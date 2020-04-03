@@ -28,6 +28,29 @@ create table `page` (
 `page_type` varchar(30) not null
 );
 
+create table Contributor(
+	Contributor_id int primary key auto_increment,
+    `name` varchar(50) not null
+);
+
+create table keyword(
+	keyword_id int primary key auto_increment,
+    `name` varchar(30) not null
+);
+
+Create table article(
+article_id int auto_increment,
+author varchar(50) not null
+);
+
+Create table user_contributor(
+user_id int not null,
+contributor_id int not null,
+
+foreign key (`user_id`) references `user`(id),
+foreign key (contributor_id) references contributor (contributor_id)
+);
+
 insert into `user`(username,`password`,enabled) values
 	("sryan", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76" , 1),
 	("admin", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1),
