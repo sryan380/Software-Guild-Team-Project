@@ -32,6 +32,18 @@ create table keyword(
     `name` varchar(30) not null
 );
 
+Create table article(
+article_id int auto_increment,
+author varchar(50) not null
+);
+
+Create table user_contributor(
+user_id int not null,
+contributor_id int not null,
+
+foreign key (`user_id`) references `user`(id),
+foreign key (contributor_id) references contributor (contributor_id)
+);
 
 
 
