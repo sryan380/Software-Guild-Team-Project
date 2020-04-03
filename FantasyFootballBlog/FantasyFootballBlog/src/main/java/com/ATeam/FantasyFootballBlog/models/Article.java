@@ -7,23 +7,26 @@ package com.ATeam.FantasyFootballBlog.models;
 
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author benvance
  */
-
-//@Entity
+@Entity
 public class Article {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private int article_id;
-    
-    @Column(nullable = false)   
+
+    @Column(nullable = false)
     private String author;
-    
-        @Override
+
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 83 * hash + this.getArticle_id();
@@ -80,4 +83,3 @@ public class Article {
         this.author = author;
     }
 }
-
