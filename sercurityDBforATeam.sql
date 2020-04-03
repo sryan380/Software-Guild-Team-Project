@@ -39,3 +39,6 @@ insert into `user_role`(user_id, role_id) values
     (3,2),
     (3,1);
     
+    
+select *
+from `user`;
