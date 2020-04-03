@@ -1,8 +1,8 @@
-drop database if exists securityDBforATeam;
+drop database if exists BreadmenFootballBlog;
 
-create database securityDBforATeam;
+create database BreadmenFootballBlog;
 
-use securityDBforATeam;
+use BreadmenFootballBlog;
 
 create table `user`(
 `id` int primary key auto_increment,
