@@ -24,7 +24,8 @@ foreign key (`role_id`) references `role`(id));
 
 insert into `user`(username,`password`,enabled) values
 	("admin", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1),
-    ("user","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1);
+    ("user","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1),
+    ("bvance","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1);
 
 insert into `role`(`role`) values
 	("ROLE_ADMIN"), 
@@ -33,5 +34,7 @@ insert into `role`(`role`) values
 insert into `user_role`(user_id, role_id) values
 	(1,1),
     (1,2),
-    (2,2);
+    (2,2),
+    (3,2),
+    (3,1);
     
