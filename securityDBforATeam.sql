@@ -43,6 +43,13 @@ article_id int auto_increment,
 author varchar(50) not null
 );
 
+create table complaint(
+complaint_id int Primary Key not null auto_increment,
+userComplaint varchar(400) not null,
+user_id int not null,
+foreign key (`user_id`) references `user`(id)
+);
+
 Create table user_contributor(
 user_id int not null,
 contributor_id int not null,
