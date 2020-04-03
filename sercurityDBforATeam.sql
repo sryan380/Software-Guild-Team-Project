@@ -23,6 +23,7 @@ foreign key (`user_id`) references `user`(id),
 foreign key (`role_id`) references `role`(id));
 
 insert into `user`(username,`password`,enabled) values
+	("sryan", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76" , 1),
 	("admin", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1),
     ("user","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1),
     ("bvance","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1);
