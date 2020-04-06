@@ -6,13 +6,17 @@
 package com.ATeam.FantasyFootballBlog.models;
 
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author davidsteffes
  */
 
-//@Entity
+@Entity
 public class Page {
     
     @Override
@@ -48,8 +52,8 @@ public class Page {
         }
         return true;
     }
-    //@GeneratedValue(strategy=GenerationType.IDENTITY)
-    //@Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
     
     private int pageId;
     
