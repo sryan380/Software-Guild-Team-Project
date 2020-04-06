@@ -19,6 +19,14 @@ import javax.persistence.Id;
 @Entity
 public class Page {
     
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
+    private int pageId;
+    
+    private String pageName;
+    
+    private String pageType;
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -52,14 +60,8 @@ public class Page {
         }
         return true;
     }
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Id
     
-    private int pageId;
     
-    private String pageName;
-    
-    private String pageType;
 
     /**
      * @return the pageId

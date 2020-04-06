@@ -7,17 +7,38 @@ package com.ATeam.FantasyFootballBlog.models;
 
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author Steve
  */
+@Entity
 public class User {
-
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
     private int id;
+    
+    @Column(nullable = false)
     private String username;
+    
+    @Column(nullable = false)
     private String password;
+    
+    @Column(nullable = false)
     private boolean enabled;
+    
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
     public int getId() {
