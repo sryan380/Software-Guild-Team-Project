@@ -5,7 +5,7 @@
  */
 package com.ATeam.FantasyFootballBlog.config;
 
-import com.ATeam.FantasyFootballBlog.services.UserService;
+import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Autowired
-    UserService service;
+    BlogService service;
     
     @Autowired
     public void configureGlobalInDb(AuthenticationManagerBuilder auth)throws Exception{
