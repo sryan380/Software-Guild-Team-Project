@@ -8,17 +8,21 @@ package com.ATeam.FantasyFootballBlog.controller;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author Steve
+ * @author davidsteffes
  */
 @Controller
-public class ContributorController {
+public class ReportController {
     
     @Autowired
     BlogService service;
+    
+    @PostMapping("/postreport")
+    public void createReport(){
+        service.createReport();
+    }
     
 }
