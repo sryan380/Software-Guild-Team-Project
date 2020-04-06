@@ -29,7 +29,7 @@ create table pages (
 );
 
 create table Contributors(
-	Contributor_id int primary key auto_increment,
+	contributor_id int primary key auto_increment,
     `name` varchar(50) not null
 );
 
@@ -55,7 +55,7 @@ create table article_tags(
 
 create table comments(
 	comment_id int primary key auto_increment,
-    content varchar(2000),
+    content varchar(2000) not null,
     article_id int not null,
     user_id int not null,
     foreign key (article_id) references articles(article_id),
@@ -64,7 +64,7 @@ create table comments(
 
 create table reports(
 	report_id int Primary Key not null auto_increment,
-	userComplaint varchar(1000) not null,
+	user_complaint varchar(1000) not null,
 	user_id int not null,
 	article_id int,
 	comment_id int,
