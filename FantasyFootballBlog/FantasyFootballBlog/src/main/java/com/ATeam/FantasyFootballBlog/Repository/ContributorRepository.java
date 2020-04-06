@@ -17,5 +17,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ContributorRepository extends JpaRepository<Contributor, Integer>{
-    List findByUser(User user);
+    List findByUsers(User user);
 }
