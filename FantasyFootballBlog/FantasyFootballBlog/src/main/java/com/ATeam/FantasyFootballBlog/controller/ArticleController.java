@@ -8,17 +8,37 @@ package com.ATeam.FantasyFootballBlog.controller;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author Steve
+ * @author benvance
  */
 @Controller
-public class ContributorController {
+public class ArticleController {
     
     @Autowired
     BlogService service;
+    
+    @PostMapping("/postArt")
+    public void createArticle(){
+        service.createArticle();
+    }
+    
+    @PostMapping("/editArt")
+    public void editArticle(Integer id){
+        service.editArticle(id);
+    }
+    
+    @PostMapping("/deleteArt")
+    public void deleteArticle(Integer id){
+        service.deleteArticle(id);
+    }
+        @PostMapping("/comment")
+    public void contComment(Integer id){
+        service.contComment(id);
+    }
+
+
     
 }
