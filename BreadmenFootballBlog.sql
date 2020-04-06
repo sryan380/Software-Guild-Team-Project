@@ -39,7 +39,7 @@ create table keyword(
 );
 
 Create table article(
-article_id int auto_increment,
+article_id int Primary key auto_increment,
 author varchar(50) not null
 );
 
