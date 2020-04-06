@@ -6,32 +6,42 @@
 package com.ATeam.FantasyFootballBlog.models;
 
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author Steve
  */
 @Entity
-public class Keyword {
+public class Tag {
     
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
-    public int keyword_id;
+    public int tag_id;
     
     @Column(nullable = false)
     public String name;
+    
+    @ManyToMany
+    @JoinTable(name = "article_tags",
+            joinColumns = {@JoinColumn(name = "tag_id")},
+            inverseJoinColumns = {@JoinColumn(name = "article_id")})
+    private Set<Article> articles;
 
-    public int getKeyword_id() {
-        return keyword_id;
+    public int getTag_id() {
+        return tag_id;
     }
 
-    public void setKeyword_id(int keyword_id) {
-        this.keyword_id = keyword_id;
+    public void setTag_id(int tag_id) {
+        this.tag_id = tag_id;
     }
 
     public String getName() {
@@ -42,11 +52,20 @@ public class Keyword {
         this.name = name;
     }
 
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + this.keyword_id;
-        hash = 59 * hash + Objects.hashCode(this.name);
+        int hash = 7;
+        hash = 83 * hash + this.tag_id;
+        hash = 83 * hash + Objects.hashCode(this.name);
+        hash = 83 * hash + Objects.hashCode(this.articles);
         return hash;
     }
 
@@ -61,11 +80,14 @@ public class Keyword {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Keyword other = (Keyword) obj;
-        if (this.keyword_id != other.keyword_id) {
+        final Tag other = (Tag) obj;
+        if (this.tag_id != other.tag_id) {
             return false;
         }
         if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.articles, other.articles)) {
             return false;
         }
         return true;

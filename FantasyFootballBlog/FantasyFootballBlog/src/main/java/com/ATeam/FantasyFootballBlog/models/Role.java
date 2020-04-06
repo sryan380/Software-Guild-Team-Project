@@ -44,8 +44,8 @@ public class Role {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + this.id;
-        hash = 41 * hash + Objects.hashCode(this.role);
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.role);
         return hash;
     }
 
@@ -69,5 +69,7 @@ public class Role {
         }
         return true;
     }
+
+    
     
 }
