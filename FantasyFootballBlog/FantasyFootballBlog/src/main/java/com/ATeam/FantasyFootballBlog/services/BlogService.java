@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  * @author Steve
  */
 @Service
-public class UserService implements UserDetailsService{
+public class BlogService implements UserDetailsService{
     
     @Autowired
     UserDao dao;
@@ -47,6 +47,22 @@ public class UserService implements UserDetailsService{
                 userAuthorities);
         
         
+    }
+
+    public void createArticle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void editArticle(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void deleteArticle(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void contComment(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
