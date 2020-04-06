@@ -23,11 +23,6 @@ create table user_roles(
 	foreign key (`role_id`) references roles(id)
 );
 
-create table pages (
-	`page_id` int primary key auto_increment,
-	`page_name` varchar(50) not null
-);
-
 create table Contributors(
 	contributor_id int primary key auto_increment,
     `name` varchar(50) not null
