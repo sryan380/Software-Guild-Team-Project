@@ -22,9 +22,9 @@ public class HomeController {
         return "home";
     }
     
-    @GetMapping("/static")
+    @GetMapping("/createArt")
     public String displayStaticPage() {
-        return "static";
+        return "createArt";
     }
     
 }

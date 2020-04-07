@@ -30,6 +30,7 @@ create table Contributors(
 
 Create table articles(
 	article_id int primary key auto_increment,
+    title varChar(50) not null,
 	author varchar(50) not null,
     content mediumtext,
 	user_id int not null,
@@ -77,7 +78,7 @@ Create table user_contributors(
 
 insert into users(username,`password`,enabled) values
 	("sryan", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76" , 1),
-	("admin", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1),
+	("admin", "$2a$10$.eqOOp7lmvwb8lJ5Lbsj8.5GxYvslO3KiQZTIcu1XH3r5FOSRxieu", 1),
     ("dave", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1),
     ("rodney","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1),
     ("bvance","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1);
