@@ -9,14 +9,21 @@ import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author benvance
+ * @author Steve
  */
 @Controller
 public class ArticleController {
+    
+    @GetMapping("/articles")
+    public String displayContentPage() {
+        return "articles";
+    }
+    
     
     @Autowired
     BlogService service;
@@ -40,7 +47,5 @@ public class ArticleController {
     public void contComment(Integer id){
         service.contComment(id);
     }
-
-
     
 }

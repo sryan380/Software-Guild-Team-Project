@@ -29,7 +29,7 @@ public class RoleDaoDB implements RoleDao{
     public Role getRoleById(int roleId) {
         try {
 
-            return template.queryForObject("SELECT * FROM `role` WHERE id = ?", new RoleMapper(), roleId);
+            return template.queryForObject("SELECT * FROM `roles` WHERE id = ?", new RoleMapper(), roleId);
         } catch (DataAccessException ex) {
             return null;
         }
@@ -39,7 +39,7 @@ public class RoleDaoDB implements RoleDao{
     public Role getRoleByRole(String roleName) {
         try {
 
-            return template.queryForObject("SELECT * FROM `role` WHERE role = ?", new RoleMapper(), roleName);
+            return template.queryForObject("SELECT * FROM `roles` WHERE role = ?", new RoleMapper(), roleName);
         } catch (DataAccessException ex) {
             return null;
         }
@@ -48,7 +48,7 @@ public class RoleDaoDB implements RoleDao{
     @Override
     public List<Role> getAllRoles() {
 
-        return template.query("SELECT * FROM `role`", new RoleMapper());
+        return template.query("SELECT * FROM `roles`", new RoleMapper());
     }
     
     public static class RoleMapper implements RowMapper<Role> {
