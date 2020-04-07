@@ -7,6 +7,7 @@ package com.ATeam.FantasyFootballBlog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -19,6 +20,11 @@ public class HomeController {
     public String displayHomePage() {
         
         return "home";
+    }
+    
+    @GetMapping("/static")
+    public String displayStaticPage() {
+        return "static";
     }
     
 }

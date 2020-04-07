@@ -37,8 +37,8 @@ public class UserDaoDB implements UserDao {
     private Set<Role> getRolesForUser(int id) throws DataAccessException {
 
         Set<Role> roles = new HashSet(template.query(
-                "SELECT r.* FROM user_role ur "
-                + "JOIN role r ON ur.role_id = r.id "
+                "SELECT r.* FROM user_roles ur "
+                + "JOIN roles r ON ur.role_id = r.id "
                 + "WHERE ur.user_id = ?", new RoleMapper(), id));
         return roles;
     }
@@ -46,7 +46,7 @@ public class UserDaoDB implements UserDao {
     @Override
     public User getUserById(int id) {
         try {
-            User user = template.queryForObject("SELECT * FROM user WHERE id = ?", new UserMapper(), id);
+            User user = template.queryForObject("SELECT * FROM users WHERE id = ?", new UserMapper(), id);
             user.setRoles(getRolesForUser(user.getId()));
             return user;
         } catch (DataAccessException ex) {
@@ -57,7 +57,7 @@ public class UserDaoDB implements UserDao {
     @Override
     public User getUserByUsername(String username) {
         try {
-            User user = template.queryForObject("SELECT * FROM user WHERE username = ?", new UserMapper(), username);
+            User user = template.queryForObject("SELECT * FROM users WHERE username = ?", new UserMapper(), username);
             user.setRoles(getRolesForUser(user.getId()));
             return user;
         } catch (DataAccessException ex) {
@@ -67,7 +67,7 @@ public class UserDaoDB implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> allUsers = template.query("SELECT * FROM user", new UserMapper());
+        List<User> allUsers = template.query("SELECT * FROM users", new UserMapper());
         for (User user : allUsers) {
             user.setRoles(getRolesForUser(user.getId()));
         }
@@ -78,11 +78,11 @@ public class UserDaoDB implements UserDao {
     @Transactional
     public void updateUser(User newData) {
 
-        template.update("UPDATE newData SET newDataname = ?, password = ?,enabled = ? WHERE id = ?", newData.getUsername(), newData.getPassword(), newData.isEnabled(), newData.getId());
+        template.update("UPDATE users SET username = ?, password = ?,enabled = ? WHERE id = ?", newData.getUsername(), newData.getPassword(), newData.isEnabled(), newData.getId());
 
-        template.update("DELETE FROM newData_role WHERE newData_id = ?", newData.getId());
+        template.update("DELETE FROM user_roles WHERE user_id = ?", newData.getId());
         for (Role role : newData.getRoles()) {
-            template.update("INSERT INTO newData_role(newData_id, role_id) VALUES(?,?)",
+            template.update("INSERT INTO user_roles(user_id, role_id) VALUES(?,?)",
                     newData.getId(), role.getId());
         }
     }
@@ -90,8 +90,8 @@ public class UserDaoDB implements UserDao {
     @Override
     public void deleteUser(int id) {
 
-        template.update("DELETE FROM user_role WHERE user_id = ?", id);
-        template.update("DELETE FROM user WHERE id = ?", id);
+        template.update("DELETE FROM user_roles WHERE user_id = ?", id);
+        template.update("DELETE FROM users WHERE id = ?", id);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class UserDaoDB implements UserDao {
         int rowsAffected = template.update(
                 connection -> {
                     PreparedStatement ps = connection.prepareStatement(
-                            "INSERT INTO user(username, password, enabled) VALUES(?,?,?)",
+                            "INSERT INTO users(username, password, enabled) VALUES(?,?,?)",
                             Statement.RETURN_GENERATED_KEYS
                     );
                     
@@ -121,7 +121,7 @@ public class UserDaoDB implements UserDao {
         toAdd.setId(generatedId);
 
         for (Role role : toAdd.getRoles()) {
-            template.update("INSERT INTO user_role(user_id, role_id) VALUES(?,?)",
+            template.update("INSERT INTO user_roles(user_id, role_id) VALUES(?,?)",
                     generatedId,
                     role.getId());
         }
