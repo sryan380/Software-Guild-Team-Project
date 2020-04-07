@@ -7,6 +7,7 @@ package com.ATeam.FantasyFootballBlog.services;
 
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
 import com.ATeam.FantasyFootballBlog.Repository.ArticleRepository;
+import com.ATeam.FantasyFootballBlog.Repository.RoleRepository;
 import com.ATeam.FantasyFootballBlog.Repository.UserRepository;
 import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Role;
@@ -33,6 +34,14 @@ public class BlogService implements UserDetailsService{
     
     @Autowired
     ArticleRepository artRepo;
+    
+    @Autowired
+    UserRepository userRepo;
+    
+    @Autowired
+    RoleRepository roleRepo;
+    
+    
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -54,7 +63,12 @@ public class BlogService implements UserDetailsService{
         
         
     }
-
+    
+    public User getIdbyName(String name){
+        User toReturn  = userDao.getUserByUsername(name);
+        return toReturn;
+    }
+    
     public Article createArticle(Article newArt) {
         Article posted = artRepo.save(newArt);
         return posted;

@@ -13,12 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author benvance
  */
 @Entity
+@Table(name = "ARTICLES")
 public class Article {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,21 +29,25 @@ public class Article {
 
     @Column(nullable = false)
     private String author;
-    
+
+    @Column(nullable = false)
+    private String title;
+
     @Column
     private String content;
-    
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user_id;
+    private User user;
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.article_id;
-        hash = 67 * hash + Objects.hashCode(this.author);
-        hash = 67 * hash + Objects.hashCode(this.content);
-        hash = 67 * hash + Objects.hashCode(this.user_id);
+        int hash = 5;
+        hash = 97 * hash + this.article_id;
+        hash = 97 * hash + Objects.hashCode(this.author);
+        hash = 97 * hash + Objects.hashCode(this.title);
+        hash = 97 * hash + Objects.hashCode(this.content);
+        hash = 97 * hash + Objects.hashCode(this.user);
         return hash;
     }
 
@@ -63,13 +69,24 @@ public class Article {
         if (!Objects.equals(this.author, other.author)) {
             return false;
         }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
         if (!Objects.equals(this.content, other.content)) {
             return false;
         }
-        if (!Objects.equals(this.user_id, other.user_id)) {
+        if (!Objects.equals(this.user, other.user)) {
             return false;
         }
         return true;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getArticle_id() {
@@ -96,13 +113,12 @@ public class Article {
         this.content = content;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user_id) {
+        this.user = user_id;
     }
 
-    
 }
