@@ -6,6 +6,9 @@
 package com.ATeam.FantasyFootballBlog.services;
 
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
+import com.ATeam.FantasyFootballBlog.Repository.ArticleRepository;
+import com.ATeam.FantasyFootballBlog.Repository.UserRepository;
+import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
 import java.util.HashSet;
@@ -26,11 +29,14 @@ import org.springframework.stereotype.Service;
 public class BlogService implements UserDetailsService{
     
     @Autowired
-    UserDao dao;
+    UserDao userDao;
+    
+    @Autowired
+    ArticleRepository artRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User loaded = dao.getUserByUsername(username);
+        User loaded = userDao.getUserByUsername(username);
         
         if (loaded == null){
             throw new UsernameNotFoundException("could not find user name: " + username);
@@ -49,12 +55,14 @@ public class BlogService implements UserDetailsService{
         
     }
 
-    public void createArticle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Article createArticle(Article newArt) {
+        Article posted = artRepo.save(newArt);
+        return posted;
     }
 
-    public void editArticle(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Article editArticle(Article editArt) {
+        Article edited = artRepo.save(editArt);
+        return edited;
     }
 
     public void deleteArticle(int id) {

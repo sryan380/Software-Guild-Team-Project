@@ -5,6 +5,7 @@
  */
 package com.ATeam.FantasyFootballBlog.controller;
 
+import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,14 @@ public class ArticleController {
     BlogService service;
     
     @PostMapping("/postArt")
-    public void createArticle(){
-        service.createArticle();
+    public String createArticle(Article newArt){
+        newArt = service.createArticle(newArt);
+        return "redirect:/static_" + newArt.getArticle_id();
     }
     
     @PostMapping("/editArt")
-    public void editArticle(Integer id){
-        service.editArticle(id);
+    public void editArticle(Article editArt){
+        service.editArticle(editArt);
     }
     
     @PostMapping("/deleteArt")

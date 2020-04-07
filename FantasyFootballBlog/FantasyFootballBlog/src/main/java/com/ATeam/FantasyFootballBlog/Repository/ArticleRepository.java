@@ -16,6 +16,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
+
+//    public void createArticle();
 //    List findByTag(Article article);
 }
 
