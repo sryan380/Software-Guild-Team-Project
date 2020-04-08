@@ -13,6 +13,7 @@ import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -61,7 +62,6 @@ public class BlogService implements UserDetailsService{
                 loaded.getPassword(), 
                 userAuthorities);
         
-        
     }
     
     public User getIdbyName(String name){
@@ -93,6 +93,12 @@ public class BlogService implements UserDetailsService{
 
     public void createReport() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Article getArticleById(Integer id) {
+        Optional<Article> articles = artRepo.findById(id);
+        Article toReturn = articles.get();
+        return toReturn;
     }
     
 }
