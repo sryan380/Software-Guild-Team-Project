@@ -40,6 +40,7 @@ public class ArticleController {
     // finish later
     @GetMapping("/viewArt")
     public String viewArticle(Integer id){
+        
         return "something";
     }
     
