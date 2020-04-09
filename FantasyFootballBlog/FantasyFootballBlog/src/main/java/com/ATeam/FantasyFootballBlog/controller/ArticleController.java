@@ -6,6 +6,7 @@
 package com.ATeam.FantasyFootballBlog.controller;
 
 import com.ATeam.FantasyFootballBlog.models.Article;
+import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -49,8 +52,9 @@ public class ArticleController {
     }
 
     // finish later
-    @GetMapping("/viewArt")
-    public String viewArticle(Model model, Integer id) {
+    @GetMapping("/viewArt/{id}")
+    @ResponseBody
+    public String viewArticle(@PathVariable("id") Integer id, Model model ) {
         Article toView = service.getArticleById(id);
         model.addAttribute("article", toView.getContent());
         return "/static";
@@ -71,15 +75,22 @@ public class ArticleController {
         service.contComment(id);
     }
 
-    @PostMapping("/userComment")
-    public void userComment(Integer id) {
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (principal instanceof UserDetails) {
-//            String username = ((UserDetails) principal).getUsername();
-//        } else {
-//            String username = principal.toString();
-//        }
-//        service.userComment(id);
+    @PostMapping("/comment")
+    public String userComment(Comment comment) {
+        
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        
+        User author = service.getIdbyName(username);
+        comment.setUser(author);
+        service.userComment(comment);
+        
+        return "redirect:/";
     }
 
 }

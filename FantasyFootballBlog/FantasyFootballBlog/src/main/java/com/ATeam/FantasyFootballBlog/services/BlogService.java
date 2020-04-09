@@ -7,9 +7,11 @@ package com.ATeam.FantasyFootballBlog.services;
 
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
 import com.ATeam.FantasyFootballBlog.Repository.ArticleRepository;
+import com.ATeam.FantasyFootballBlog.Repository.CommentRepository;
 import com.ATeam.FantasyFootballBlog.Repository.RoleRepository;
 import com.ATeam.FantasyFootballBlog.Repository.UserRepository;
 import com.ATeam.FantasyFootballBlog.models.Article;
+import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
 import java.util.HashSet;
@@ -41,6 +43,9 @@ public class BlogService implements UserDetailsService{
     
     @Autowired
     RoleRepository roleRepo;
+    
+    @Autowired
+    CommentRepository commentRepo;
     
     
 
@@ -86,6 +91,11 @@ public class BlogService implements UserDetailsService{
     public void contComment(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+     public Comment userComment(Comment comment) {
+        Comment posted = commentRepo.save(comment);
+        return posted;
+    }
 
     public void createTag() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -101,5 +111,7 @@ public class BlogService implements UserDetailsService{
         Article toReturn = articles.get();
         return toReturn;
     }
+
+   
     
 }
