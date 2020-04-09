@@ -19,90 +19,140 @@ and open the template in the editor.
 
             <title>FantasyFB: EditUser</title>
     </head>
-    <body>
-        
-        <div class="container">
-            <h1 style="text-align: center">Fantasy Football Blog</h1>
-            <hr/>
-            <div class="navbar">
-                <ul class="nav nav-tabs">
-                    <li role="presentation" class="nav-item">
-                        <a class="nav-link active" href="home">Home</a>
-                    </li>
-                    <li role="presentation" class="nav-item">
-                        <a class="nav-link" href="articles">Articles</a>
-                    </li>
-                    <li role="presentation" class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
-                    </li>
-                    <li role="presentation" class="nav-item">
-                        <a class="nav-link" href="admin">Admin</a>
-                    </li>
-                </ul>    
-            </div>
-            <h2>Edit User Page</h2>
-            <div sec:authorize="isAuthenticated()">
-                <form class="form-inline" 
-                      method="POST" 
-                      action="/logout">
-                    <input type="hidden" 
-                           th:name="${_csrf.parameterName}" 
-                           th:value="${_csrf.token}"/>
-                    <label for="submit">
-                        Hello : <span th:text="${#authentication.name}">
-                        </span>&nbsp;&nbsp;&nbsp;|
-                    </label>
-                    <button class="btn btn-link" 
-                            id="submit" 
-                            type="submit">Logout</button>
-                </form>
-            </div>
-            <p>
-                Only users with the ADMIN role can see this page.
-            </p>
+    <body style = "background-color: #038a75; color: white">
+        <div class="container" style = "background-color: black">
+
             <div class="container">
-                <div class="row"> 
-                    <h3>Update User</h3>
+                <h1 style="text-align: center; color: #038a75">Fantasy Football Blog</h1>
+                <hr/>
+                <div class="navbar">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link active" href="home">Home</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link" href="articles">Articles</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link" href="login">Login</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link" href="admin">Admin</a>
+                        </li>
+                    </ul>    
+                </div>
+                <h2>Edit User Page</h2>
+                <div sec:authorize="isAuthenticated()">
+                    <form class="form-inline" 
+                          method="POST" 
+                          action="/logout">
+                        <input type="hidden" 
+                               th:name="${_csrf.parameterName}" 
+                               th:value="${_csrf.token}"/>
+                        <label for="submit">
+                            Hello : <span th:text="${#authentication.name}">
+                            </span>&nbsp;&nbsp;&nbsp;|
+                        </label>
+                        <button class="btn btn-link" 
+                                id="submit" 
+                                type="submit">Logout</button>
+                    </form>
+                </div>
+                <p>
+                    Only users with the ADMIN role can see this page.
+                </p>
+                <div class="container">
+                    <div class="row"> 
+                        <h3>Update User</h3>
+                    </div>
+                    <div class="row">
+                        <form method="POST" action="editUser" class="col-md-10">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input type="hidden" name="id" th:value ="${user.id}"/>
+                            <div class="form-group row">
+                                <label for="username" class="col-md-4 control-label">Username:</label>
+                                <div class="col-md-8">
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="username"
+                                           name="username" 
+                                           placeholder="Username"
+                                           th:value="${user.username}"
+                                           disabled/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="enabled" class="col-md-4 control-label">Enabled:</label>
+                                <div class="col-md-8">
+                                    <input type="checkbox"  
+                                           id="enabled"
+                                           name="enabled"
+                                           th:checked="${user.enabled}"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="roleIdList" class="col-md-4 control-label">Roles:</label>
+                                <div class="col-md-8">
+                                    <select id="roleIdList" 
+                                            name="roleIdList" 
+                                            multiple="multiple" 
+                                            class="form-control">
+                                        <div th:each="currentRole : ${roles}">
+                                            <option th:value="${currentRole.id}" 
+                                                    th:selected=="${user.roles.contains(currentRole)}"
+                                                    th:text="${currentRole.role}">
+                                            </option>
+                                        </div>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-md-4 col-md-8">
+                                    <input type="submit" 
+                                           class="btn btn-primary" 
+                                           id="search-button" 
+                                           value="Update User"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <h3>Update Password</h3>
                 </div>
                 <div class="row">
-                    <form method="POST" action="editUser" class="col-md-10">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <div th:if="${error != null}" th:text="${error}"
+                         class="alert alert-danger" role="alert">
+                        error text
+                    </div>
+                    <form method="POST" 
+                          action="editPassword" class="col-md-10">
+                        <input type="hidden" 
+                               th:name="${_csrf.parameterName}" 
+                               th:value="${_csrf.token}"/>
                         <input type="hidden" name="id" th:value ="${user.id}"/>
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 control-label">Username:</label>
+                            <label for="password" class="col-md-4 control-label">
+                                New Password:
+                            </label>
                             <div class="col-md-8">
-                                <input type="text" 
+                                <input type="password" 
                                        class="form-control" 
-                                       id="username"
-                                       name="username" 
-                                       placeholder="Username"
-                                       th:value="${user.username}"
-                                       disabled/>
+                                       id="password"
+                                       name="password"/>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="enabled" class="col-md-4 control-label">Enabled:</label>
+                            <label for="confirmPassword" class="col-md-4 control-label">
+                                Confirm New Password:
+                            </label>
                             <div class="col-md-8">
-                                <input type="checkbox"  
-                                       id="enabled"
-                                       name="enabled"
-                                       th:checked="${user.enabled}"/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="roleIdList" class="col-md-4 control-label">Roles:</label>
-                            <div class="col-md-8">
-                                <select id="roleIdList" 
-                                        name="roleIdList" 
-                                        multiple="multiple" 
-                                        class="form-control">
-                                    <div th:each="currentRole : ${roles}">
-                                        <option th:value="${currentRole.id}" 
-                                                th:selected=="${user.roles.contains(currentRole)}"
-                                                th:text="${currentRole.role}">
-                                        </option>
-                                    </div>
-                                </select>
+                                <input type="password" 
+                                       class="form-control" 
+                                       id="confirmPassword"
+                                       name="confirmPassword"/>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -110,62 +160,13 @@ and open the template in the editor.
                                 <input type="submit" 
                                        class="btn btn-primary" 
                                        id="search-button" 
-                                       value="Update User"/>
+                                       value="Update Password"/>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <h3>Update Password</h3>
-            </div>
-            <div class="row">
-                <div th:if="${error != null}" th:text="${error}"
-                     class="alert alert-danger" role="alert">
-                    error text
-                </div>
-                <form method="POST" 
-                      action="editPassword" class="col-md-10">
-                    <input type="hidden" 
-                           th:name="${_csrf.parameterName}" 
-                           th:value="${_csrf.token}"/>
-                    <input type="hidden" name="id" th:value ="${user.id}"/>
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 control-label">
-                            New Password:
-                        </label>
-                        <div class="col-md-8">
-                            <input type="password" 
-                                   class="form-control" 
-                                   id="password"
-                                   name="password"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="confirmPassword" class="col-md-4 control-label">
-                            Confirm New Password:
-                        </label>
-                        <div class="col-md-8">
-                            <input type="password" 
-                                   class="form-control" 
-                                   id="confirmPassword"
-                                   name="confirmPassword"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="offset-md-4 col-md-8">
-                            <input type="submit" 
-                                   class="btn btn-primary" 
-                                   id="search-button" 
-                                   value="Update Password"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

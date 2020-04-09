@@ -40,7 +40,7 @@ public class ArticleController {
     // finish later
     @GetMapping("/viewArt")
     public String viewArticle(Integer id){
-        
+        Article toView = service.getArticleById(id);
         return "something";
     }
     
