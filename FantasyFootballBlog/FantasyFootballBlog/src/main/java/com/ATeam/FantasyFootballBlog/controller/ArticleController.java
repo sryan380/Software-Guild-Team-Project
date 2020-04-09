@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -49,20 +50,11 @@ public class ArticleController {
 
     // finish later
     @GetMapping("/viewArt")
-    public String viewArticle(Integer id) {
+    public String viewArticle(Model model, Integer id) {
         Article toView = service.getArticleById(id);
-
-        return "something";
+        model.addAttribute("article", toView.getContent());
+        return "/static";
     }
-
-
-//    @GetMapping("test")
-//    public String testPage(Model model) {
-//        String name = "John";
-//        model.addAttribute("number", 42);
-//        model.addAttribute("firstName", name);
-//        return "test";
-//    }
     
     @PostMapping("/editArt")
     public void editArticle(Article editArt) {
