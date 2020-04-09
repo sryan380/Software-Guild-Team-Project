@@ -5,7 +5,6 @@
  */
 package com.ATeam.FantasyFootballBlog.Repository;
 
-import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

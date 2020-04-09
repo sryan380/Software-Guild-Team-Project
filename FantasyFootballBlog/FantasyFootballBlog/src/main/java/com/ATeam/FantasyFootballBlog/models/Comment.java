@@ -13,12 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Steve
  */
 @Entity
+@Table(name = "comments")
 public class Comment {
     
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +36,7 @@ public class Comment {
     
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user_id;
+    private User user;
 
     public int getComment_id() {
         return comment_id;
@@ -61,11 +63,11 @@ public class Comment {
     }
 
     public User getUser_id() {
-        return user_id;
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user_id) {
+        this.user = user_id;
     }
 
     @Override
@@ -74,7 +76,7 @@ public class Comment {
         hash = 67 * hash + this.comment_id;
         hash = 67 * hash + Objects.hashCode(this.content);
         hash = 67 * hash + Objects.hashCode(this.article_id);
-        hash = 67 * hash + Objects.hashCode(this.user_id);
+        hash = 67 * hash + Objects.hashCode(this.user);
         return hash;
     }
 
@@ -99,7 +101,7 @@ public class Comment {
         if (!Objects.equals(this.article_id, other.article_id)) {
             return false;
         }
-        if (!Objects.equals(this.user_id, other.user_id)) {
+        if (!Objects.equals(this.user, other.user)) {
             return false;
         }
         return true;

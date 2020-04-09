@@ -51,7 +51,7 @@ create table article_tags(
 create table comments(
 	comment_id int primary key auto_increment,
     content varchar(2000) not null,
-    article_id int not null,
+    article_id int,
     user_id int not null,
     foreign key (article_id) references articles(article_id),
     foreign key (user_id) references users(id)
