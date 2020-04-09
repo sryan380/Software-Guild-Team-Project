@@ -55,20 +55,11 @@ and open the template in the editor.
                         <button class="btn btn-link" id="submit" type="submit">Logout</button>
                     </form>
                 </div>
-
                 <p>
                     Only users with the USER role can see this page.
                 </p>
-                <div sec:authorize="hasRole('ROLE_ADMIN')">
-<!--                    <form action="viewArt">
-                        <input type="text"/>
-                        <input class="btn btn-primary" type="submit"/>
-                    </form>-->
-                    
-                    <a href="viewArt/1">view article</a>
-                    <p>
-                        Only the master breadman can see this.
-                    </p>
+                <div>
+                    <a href="viewArt_1">view article</a>
                 </div>
             </div>
         </div>

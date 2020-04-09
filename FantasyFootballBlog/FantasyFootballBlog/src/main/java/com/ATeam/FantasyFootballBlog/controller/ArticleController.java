@@ -52,7 +52,7 @@ public class ArticleController {
         return "redirect:/";
     }
 
-    @GetMapping("/viewArt/{id}")
+    @GetMapping("/viewArt_{id}")
     public String getArticle(@PathVariable("id") Integer id, Model model) {
         Article toView = service.getArticleById(id);
         model.addAttribute("article", toView.getContent());
