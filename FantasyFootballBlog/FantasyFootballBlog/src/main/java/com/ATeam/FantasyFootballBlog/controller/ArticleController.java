@@ -6,6 +6,7 @@
 package com.ATeam.FantasyFootballBlog.controller;
 
 import com.ATeam.FantasyFootballBlog.models.Article;
+import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,15 +80,22 @@ public class ArticleController {
         service.contComment(id);
     }
 
-    @PostMapping("/userComment")
-    public void userComment(Integer id) {
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (principal instanceof UserDetails) {
-//            String username = ((UserDetails) principal).getUsername();
-//        } else {
-//            String username = principal.toString();
-//        }
-//        service.userComment(id);
+    @PostMapping("/comment")
+    public String userComment(Comment comment) {
+        
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        
+        User author = service.getIdbyName(username);
+        comment.setUser(author);
+        service.userComment(comment);
+        
+        return "redirect:/";
     }
 
 }

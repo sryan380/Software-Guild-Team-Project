@@ -45,12 +45,13 @@ and open the template in the editor.
 
             <div id="article"></div>
 
-            <div id="response">
+            <div id="userComment">
 
                 <h3>Leave a Comment</h3>
-                <form>
-                    <textarea name="comment" id="comment" rows="4" tabindex="10"  required="required"></textarea>
-                    <input name="submit" type="submit" value="Submit comment" />
+                <form method="post" action="/comment">
+                    <textarea name="content" id="comment" rows="4" tabindex="10"  required="required"></textarea>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <input type="submit" value="Submit Comment" />
                 </form>
             </div>
         </div>
