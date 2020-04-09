@@ -36,14 +36,14 @@ public class ArticleController {
         service.createArticle(newArt);
         return "redirect:/";
     }
-    
+
     // finish later
     @GetMapping("/viewArt")
-    public String viewArticle(Integer id){
+    public String viewArticle(Integer id) {
         Article toView = service.getArticleById(id);
         return "something";
     }
-    
+
     @PostMapping("/editArt")
     public void editArticle(Article editArt) {
         service.editArticle(editArt);
@@ -54,9 +54,20 @@ public class ArticleController {
         service.deleteArticle(id);
     }
 
-    @PostMapping("/comment")
+    @PostMapping("/contComment")
     public void contComment(Integer id) {
         service.contComment(id);
+    }
+
+    @PostMapping("/userComment")
+    public void userComment(Integer id) {
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            String username = ((UserDetails) principal).getUsername();
+//        } else {
+//            String username = principal.toString();
+//        }
+//        service.userComment(id);
     }
 
 }

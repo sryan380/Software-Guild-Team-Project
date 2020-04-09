@@ -27,4 +27,9 @@ public class HomeController {
         return "createArt";
     }
     
+    @GetMapping("/static")
+    public String displayArticle(){
+        return "static";
+    }
+    
 }
