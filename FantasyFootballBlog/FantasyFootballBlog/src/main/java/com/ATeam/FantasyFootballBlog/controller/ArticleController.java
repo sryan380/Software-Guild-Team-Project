@@ -9,6 +9,7 @@ import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,19 +32,37 @@ public class ArticleController {
 
     @PostMapping("/postArt")
     public String createArticle(Article newArt) {
-        User author = service.getIdbyName("j");
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        User author = service.getIdbyName(username);
         newArt.setUser(author);
         service.createArticle(newArt);
         return "redirect:/";
     }
-    
+
     // finish later
     @GetMapping("/viewArt")
-    public String viewArticle(Integer id){
+    public String viewArticle(Integer id) {
         Article toView = service.getArticleById(id);
+
         return "something";
     }
-    
+
+//    @GetMapping("test")
+//    public String testPage(Model model) {
+//        String name = "John";
+//        model.addAttribute("number", 42);
+//        model.addAttribute("firstName", name);
+//        return "test";
+//    }
+
     @PostMapping("/editArt")
     public void editArticle(Article editArt) {
         service.editArticle(editArt);
