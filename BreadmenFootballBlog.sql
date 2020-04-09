@@ -5,14 +5,14 @@ create database BreadmenFootballBlog;
 use BreadmenFootballBlog;
 
 create table users(
-`id` int primary key auto_increment,
-username varchar(30) not null unique,
-`password` varchar(100) not null,
-enabled boolean not null);
+	`id` int primary key auto_increment,
+	username varchar(30) not null unique,
+	`password` varchar(100) not null,
+	enabled boolean not null);
 
 create table roles(
-id int primary key auto_increment,
-`role` varchar(30) not null
+	id int primary key auto_increment,
+	`role` varchar(30) not null
 );
 
 create table user_roles(
@@ -31,7 +31,6 @@ create table Contributors(
 Create table articles(
 	article_id int primary key auto_increment,
     title varChar(50) not null,
-	author varchar(50) not null,
     content mediumtext,
 	user_id int not null,
     foreign key (user_id) references users(id)
