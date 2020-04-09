@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -51,13 +52,11 @@ public class ArticleController {
         return "redirect:/";
     }
 
-    // finish later
     @GetMapping("/viewArt/{id}")
-    @ResponseBody
-    public String viewArticle(@PathVariable("id") Integer id, Model model ) {
+    public String getArticle(@PathVariable("id") Integer id, Model model) {
         Article toView = service.getArticleById(id);
         model.addAttribute("article", toView.getContent());
-        return "/static";
+        return "article";
     }
     
     @PostMapping("/editArt")
@@ -92,5 +91,7 @@ public class ArticleController {
         
         return "redirect:/";
     }
+
+    
 
 }
