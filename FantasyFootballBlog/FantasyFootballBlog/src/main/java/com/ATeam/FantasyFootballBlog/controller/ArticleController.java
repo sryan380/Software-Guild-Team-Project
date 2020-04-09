@@ -55,6 +55,7 @@ public class ArticleController {
         return "something";
     }
 
+
 //    @GetMapping("test")
 //    public String testPage(Model model) {
 //        String name = "John";
@@ -62,7 +63,7 @@ public class ArticleController {
 //        model.addAttribute("firstName", name);
 //        return "test";
 //    }
-
+    
     @PostMapping("/editArt")
     public void editArticle(Article editArt) {
         service.editArticle(editArt);
@@ -73,9 +74,20 @@ public class ArticleController {
         service.deleteArticle(id);
     }
 
-    @PostMapping("/comment")
+    @PostMapping("/contComment")
     public void contComment(Integer id) {
         service.contComment(id);
+    }
+
+    @PostMapping("/userComment")
+    public void userComment(Integer id) {
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            String username = ((UserDetails) principal).getUsername();
+//        } else {
+//            String username = principal.toString();
+//        }
+//        service.userComment(id);
     }
 
 }
