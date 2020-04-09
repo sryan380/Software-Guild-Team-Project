@@ -106,6 +106,7 @@ public class BlogService implements UserDetailsService{
     }
 
     public Article getArticleById(Integer id) {
+        id = 1;
         Optional<Article> articles = artRepo.findById(id);
         Article toReturn = articles.get();
         return toReturn;

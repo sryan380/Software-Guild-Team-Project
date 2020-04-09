@@ -13,8 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -48,22 +52,12 @@ public class ArticleController {
         return "redirect:/";
     }
 
-    // finish later
-    @GetMapping("/viewArt")
-    public String viewArticle(Integer id) {
+    @GetMapping("/viewArt/{id}")
+    public String getArticle(@PathVariable("id") Integer id, Model model) {
         Article toView = service.getArticleById(id);
-
-        return "something";
+        model.addAttribute("article", toView.getContent());
+        return "article";
     }
-
-
-//    @GetMapping("test")
-//    public String testPage(Model model) {
-//        String name = "John";
-//        model.addAttribute("number", 42);
-//        model.addAttribute("firstName", name);
-//        return "test";
-//    }
     
     @PostMapping("/editArt")
     public void editArticle(Article editArt) {
@@ -97,5 +91,7 @@ public class ArticleController {
         
         return "redirect:/";
     }
+
+    
 
 }
