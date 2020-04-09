@@ -31,7 +31,7 @@ public class ArticleController {
 
     @PostMapping("/postArt")
     public String createArticle(Article newArt) {
-        User author = service.getIdbyName(newArt.getAuthor());
+        User author = service.getIdbyName("j");
         newArt.setUser(author);
         service.createArticle(newArt);
         return "redirect:/";

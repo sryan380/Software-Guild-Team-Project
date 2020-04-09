@@ -28,9 +28,6 @@ public class Article {
     private int article_id;
 
     @Column(nullable = false)
-    private String author;
-
-    @Column(nullable = false)
     private String title;
 
     @Column
@@ -44,7 +41,6 @@ public class Article {
     public int hashCode() {
         int hash = 5;
         hash = 97 * hash + this.article_id;
-        hash = 97 * hash + Objects.hashCode(this.author);
         hash = 97 * hash + Objects.hashCode(this.title);
         hash = 97 * hash + Objects.hashCode(this.content);
         hash = 97 * hash + Objects.hashCode(this.user);
@@ -64,9 +60,6 @@ public class Article {
         }
         final Article other = (Article) obj;
         if (this.article_id != other.article_id) {
-            return false;
-        }
-        if (!Objects.equals(this.author, other.author)) {
             return false;
         }
         if (!Objects.equals(this.title, other.title)) {
@@ -95,14 +88,6 @@ public class Article {
 
     public void setArticle_id(int article_id) {
         this.article_id = article_id;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getContent() {
