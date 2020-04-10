@@ -6,6 +6,7 @@
 package com.ATeam.FantasyFootballBlog.Repository;
 
 import com.ATeam.FantasyFootballBlog.models.Article;
+import com.ATeam.FantasyFootballBlog.services.NullArticleException;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
