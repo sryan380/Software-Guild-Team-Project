@@ -26,14 +26,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class ArticleController {
+    
+    @Autowired
+    BlogService service;
 
     @GetMapping("/articles")
     public String displayContentPage() {
         return "articles";
     }
-
-    @Autowired
-    BlogService service;
 
     @PostMapping("/postArt")
     public String createArticle(Article newArt) {

@@ -15,6 +15,7 @@ import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +112,16 @@ public class BlogService implements UserDetailsService{
         Article toReturn = articles.get();
         return toReturn;
     }
-
-   
     
+    public Set<Role> convertListToSet(List<Role> list){ 
+        return new HashSet<>(list); 
+    } 
+
+    public void createUser(User newUser) {
+        List<Role> roles = roleRepo.findAll();
+        Set<Role> setOfRoles = convertListToSet(roles);
+        setOfRoles.remove(roles.get(0));
+        newUser.setRoles(setOfRoles);
+        userRepo.save(newUser);
+    }
 }

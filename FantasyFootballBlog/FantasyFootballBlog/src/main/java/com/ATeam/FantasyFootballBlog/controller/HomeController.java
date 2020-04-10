@@ -27,4 +27,9 @@ public class HomeController {
         return "createArt";
     }
     
+    @GetMapping("/register")
+    public String displayRegisterPage(){
+        return "register";
+    }
+    
 }

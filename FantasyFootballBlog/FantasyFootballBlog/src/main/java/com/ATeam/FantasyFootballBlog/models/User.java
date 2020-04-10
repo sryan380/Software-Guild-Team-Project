@@ -36,7 +36,7 @@ public class User {
     
     @Column(nullable = false)
     private boolean enabled;
-    
+    // fix this to match database
     @ManyToMany
     @JoinTable(name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id")},

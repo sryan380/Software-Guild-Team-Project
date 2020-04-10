@@ -8,6 +8,10 @@ create table users(
 	`id` int primary key auto_increment,
 	username varchar(30) not null unique,
 	`password` varchar(100) not null,
+    FirstName varchar(50),
+    lastName varchar(50),
+    email varchar(50),
+    phone varchar(50),
 	enabled boolean not null);
 
 create table roles(
