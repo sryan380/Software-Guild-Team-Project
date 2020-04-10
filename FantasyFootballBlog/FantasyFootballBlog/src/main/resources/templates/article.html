@@ -40,6 +40,7 @@ and open the template in the editor.
                     </ul>    
                 </div>
             </div>
+
             <div th:text="${article.title}"></div>
             <div th:text="${article.user.username}"></div>
             <div th:utext="${article.content}"></div>
@@ -48,6 +49,13 @@ and open the template in the editor.
                 <label th:text="${comment.user_id.username}"/>
                 <p class="col-md-8" style = "border-radius: 15px; background-color: #038a75; color: white; resize:none" th:text="${comment.content}"/>
             </div>
+
+
+<!--            <div th:utext="${article}"></div>-->
+            <input type="submit" value="Delete Article" />
+            
+
+
             <div id="userComment">
 
                 <h6>Leave a Comment</h6>
