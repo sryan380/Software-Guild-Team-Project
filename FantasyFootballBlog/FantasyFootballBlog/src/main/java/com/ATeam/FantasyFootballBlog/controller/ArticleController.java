@@ -9,6 +9,8 @@ import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
+import com.ATeam.FantasyFootballBlog.services.NullArticleException;
+import com.ATeam.FantasyFootballBlog.services.NullCommentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,20 +55,20 @@ public class ArticleController {
     }
 
     @GetMapping("/viewArt_{id}")
-    public String getArticle(@PathVariable("id") Integer id, Model model) {
+    public String getArticle(@PathVariable("id") Integer id, Model model) throws NullArticleException {
         Article toView = service.getArticleById(id);
-        model.addAttribute("article", toView.getContent());
+        model.addAttribute("article", toView);
         return "article";
     }
     
     @PostMapping("/editArt")
-    public void editArticle(Article editArt) {
+    public void editArticle(Article editArt) throws NullArticleException {
         service.editArticle(editArt);
     }
 
     @PostMapping("/deleteArt")
-    public void deleteArticle(Integer id) {
-        service.deleteArticle(id);
+    public void deleteArticle(Article deleteArt) {
+        service.deleteArticle(deleteArt);
     }
 
     @PostMapping("/contComment")
@@ -75,7 +77,7 @@ public class ArticleController {
     }
 
     @PostMapping("/comment")
-    public String userComment(Comment comment) {
+    public String userComment(Comment comment) throws NullCommentException {
         
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
@@ -89,7 +91,7 @@ public class ArticleController {
         comment.setUser(author);
         service.userComment(comment);
         
-        return "redirect:/";
+        return "redirect:/viewArt_" + comment.getArticle_id().getArticle_id();
     }
 
     

@@ -48,6 +48,13 @@ public class BlogService implements UserDetailsService{
     @Autowired
     CommentRepository commentRepo;
     
+    @Autowired
+        public BlogService (UserDao userDao, ArticleRepository artRepo, CommentRepository commentRepo){
+            this.userDao = userDao;
+            this.artRepo = artRepo;
+            this.commentRepo = commentRepo;
+        }
+    
     
 
     @Override
@@ -80,20 +87,28 @@ public class BlogService implements UserDetailsService{
         return posted;
     }
 
-    public Article editArticle(Article editArt) {
+    public Article editArticle(Article editArt) throws NullArticleException {
+        
+        if( editArt == null){
+            throw new NullArticleException("Null article in editArticle method.");
+        }
+        
         Article edited = artRepo.save(editArt);
         return edited;
     }
 
-    public void deleteArticle(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteArticle(Article deleteArt) {
+     //artRepo.delete(deleteArt.getArticle_id();
     }
 
     public void contComment(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-     public Comment userComment(Comment comment) {
+     public Comment userComment(Comment comment) throws NullCommentException {
+        if (comment == null){
+            throw new NullCommentException ("Got NullCommentException in userComment method.");
+        }
         Comment posted = commentRepo.save(comment);
         return posted;
     }
@@ -106,9 +121,14 @@ public class BlogService implements UserDetailsService{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Article getArticleById(Integer id) {
+    public Article getArticleById(Integer id) throws NullArticleException {
         id = 1;
         Optional<Article> articles = artRepo.findById(id);
+        
+        if(articles == null){
+            throw new NullArticleException("Got null article in getArticleById.");
+        }
+        
         Article toReturn = articles.get();
         return toReturn;
     }

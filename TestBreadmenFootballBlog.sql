@@ -1,17 +1,13 @@
-drop database if exists BreadmenFootballBlog;
+drop database if exists TestBreadmenFootballBlog;
 
-create database BreadmenFootballBlog;
+create database TestBreadmenFootballBlog;
 
-use BreadmenFootballBlog;
+use TestBreadmenFootballBlog;
 
 create table users(
 	`id` int primary key auto_increment,
 	username varchar(30) not null unique,
 	`password` varchar(100) not null,
-    FirstName varchar(50),
-    lastName varchar(50),
-    email varchar(50),
-    phone varchar(50),
 	enabled boolean not null);
 
 create table roles(
@@ -55,7 +51,7 @@ create table article_tags(
 create table comments(
 	comment_id int primary key auto_increment,
     content varchar(2000) not null,
-    article_id int not null,
+    article_id int,
     user_id int not null,
     foreign key (article_id) references articles(article_id),
     foreign key (user_id) references users(id)
@@ -88,8 +84,7 @@ insert into users(username,`password`,enabled) values
 
 insert into roles(`role`) values
 	("ROLE_ADMIN"), 
-	("ROLE_USER"),
-    ("ROLE_CONTRIBUTOR");
+	("ROLE_USER");
     
 insert into user_roles(user_id, role_id) values
 	(1,1),

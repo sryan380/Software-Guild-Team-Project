@@ -20,7 +20,7 @@ public class ReportController {
     @Autowired
     BlogService service;
     
-    @PostMapping("/postreport")
+    @PostMapping("/report")
     public void createReport(){
         service.createReport();
     }
