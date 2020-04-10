@@ -84,8 +84,8 @@ public class BlogService implements UserDetailsService{
         return edited;
     }
 
-    public void deleteArticle(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteArticle(Article deleteArt) {
+     //artRepo.delete(deleteArt.getArticle_id();
     }
 
     public void contComment(int id) {

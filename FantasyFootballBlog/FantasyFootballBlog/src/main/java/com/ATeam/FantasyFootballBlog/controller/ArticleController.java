@@ -65,8 +65,8 @@ public class ArticleController {
     }
 
     @PostMapping("/deleteArt")
-    public void deleteArticle(Integer id) {
-        service.deleteArticle(id);
+    public void deleteArticle(Article deleteArt) {
+        service.deleteArticle(deleteArt);
     }
 
     @PostMapping("/contComment")
