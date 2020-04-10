@@ -51,7 +51,7 @@ create table article_tags(
 create table comments(
 	comment_id int primary key auto_increment,
     content varchar(2000) not null,
-    article_id int,
+    article_id int not null,
     user_id int not null,
     foreign key (article_id) references articles(article_id),
     foreign key (user_id) references users(id)
@@ -84,7 +84,8 @@ insert into users(username,`password`,enabled) values
 
 insert into roles(`role`) values
 	("ROLE_ADMIN"), 
-	("ROLE_USER");
+	("ROLE_USER"),
+    ("ROLE_CONTRIBUTOR");
     
 insert into user_roles(user_id, role_id) values
 	(1,1),

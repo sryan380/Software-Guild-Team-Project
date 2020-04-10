@@ -5,7 +5,10 @@
  */
 package com.ATeam.FantasyFootballBlog.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,6 +36,10 @@ public class Article {
 
     @Column
     private String content;
+    
+    @OneToMany
+    @JoinColumn(name = "article_id")
+    private List<Comment> artComments;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -40,10 +48,11 @@ public class Article {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + this.article_id;
-        hash = 97 * hash + Objects.hashCode(this.title);
-        hash = 97 * hash + Objects.hashCode(this.content);
-        hash = 97 * hash + Objects.hashCode(this.user);
+        hash = 89 * hash + this.article_id;
+        hash = 89 * hash + Objects.hashCode(this.title);
+        hash = 89 * hash + Objects.hashCode(this.content);
+        hash = 89 * hash + Objects.hashCode(this.artComments);
+        hash = 89 * hash + Objects.hashCode(this.user);
         return hash;
     }
 
@@ -68,11 +77,15 @@ public class Article {
         if (!Objects.equals(this.content, other.content)) {
             return false;
         }
+        if (!Objects.equals(this.artComments, other.artComments)) {
+            return false;
+        }
         if (!Objects.equals(this.user, other.user)) {
             return false;
         }
         return true;
     }
+
 
     public String getTitle() {
         return title;
@@ -104,6 +117,20 @@ public class Article {
 
     public void setUser(User user_id) {
         this.user = user_id;
+    }
+
+    /**
+     * @return the artComments
+     */
+    public List<Comment> getArtComments() {
+        return artComments;
+    }
+
+    /**
+     * @param artComments the artComments to set
+     */
+    public void setArtComments(List<Comment> artComments) {
+        this.artComments = artComments;
     }
 
 }

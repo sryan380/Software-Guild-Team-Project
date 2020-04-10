@@ -55,7 +55,7 @@ public class ArticleController {
     @GetMapping("/viewArt_{id}")
     public String getArticle(@PathVariable("id") Integer id, Model model) {
         Article toView = service.getArticleById(id);
-        model.addAttribute("article", toView.getContent());
+        model.addAttribute("article", toView);
         return "article";
     }
     
@@ -89,7 +89,7 @@ public class ArticleController {
         comment.setUser(author);
         service.userComment(comment);
         
-        return "redirect:/";
+        return "redirect:/viewArt_" + comment.getArticle_id().getArticle_id();
     }
 
     
