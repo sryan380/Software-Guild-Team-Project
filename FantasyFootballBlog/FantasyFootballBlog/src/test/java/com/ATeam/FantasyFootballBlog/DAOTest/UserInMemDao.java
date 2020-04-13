@@ -6,7 +6,10 @@
 package com.ATeam.FantasyFootballBlog.DAOTest;
 
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
+import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
+import com.ATeam.FantasyFootballBlog.models.registerUser;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +18,31 @@ import java.util.List;
  */
 public class UserInMemDao implements UserDao {
 
+    List<User> userList = new ArrayList<>();
+        
+    public UserInMemDao(){
+        User testUser1 = new User();
+        testUser1.setId(1234);
+        testUser1.setUsername("breadmania");
+        testUser1.setPassword("breadman");
+        testUser1.setEnabled(true);
+        testUser1.setFirst_name("Bob");
+        testUser1.setLast_name("Smith");
+        testUser1.setEmail("bobsemail");
+        userList.add(testUser1);
+        
+        User testUser2 = new User();
+        testUser2.setId(5678);
+        testUser2.setUsername("firefly");
+        testUser2.setPassword("grasshopper");
+        testUser2.setEnabled(true);
+        testUser2.setFirst_name("Jane");
+        testUser2.setLast_name("Doe");
+        testUser2.setEmail("janesemail");
+        userList.add(testUser2);
+        
+    }
+
     @Override
     public User getUserById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -22,23 +50,13 @@ public class UserInMemDao implements UserDao {
 
     @Override
     public User getUserByUsername(String username) {
-
-        User testUser = new User();
-        testUser.setId(1234);
-        testUser.setEnabled(true);
-        testUser.setPassword("breadman");
-//        testUser.setRoles("Role_User");
-//        need to figure out how to set the user-role here- it's not a string
-        testUser.setUsername("breadmania");
-        
-        return testUser;
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<User> getAllUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return userList;
+        }
 
     @Override
     public void updateUser(User user) {
