@@ -21,9 +21,13 @@ and open the template in the editor.
             <div class="container">
                 <h1 style="text-align: center; color: #64065f; font-size: 6em"><font font face="Impact">Fantasy Football Blog</font></h1>
                 <hr/>
-                <h2>Login Page</h2>
+                <h2>Register Page</h2>
 
-                <form class="form-horizontal" 
+                <h3 th:if="${#request.getParameter('register_error') == '1'}">
+                    Passwords must match</h3>
+
+                <form onsubmit="checkForm(this);"
+                      class="form-horizontal" 
                       role="form" 
                       method="post" 
                       action="/register">
@@ -40,21 +44,21 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="Re-enterPassword" class="col-md-4 control-label">Re-enter Password:</label>
+                        <label for="confirmedPassword" class="col-md-4 control-label">Re-enter Password:</label>
                         <div class="col-md-8">
-                            <input type="password" class="form-control" id="Re-enterPassword" name="Re-enterPassword" placeholder="Re-enter Password" required/>
+                            <input type="password" class="form-control" id="confirmedPassword" name="confirmedPassword" placeholder="Re-enter Password" required/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="firstname" class="col-md-4 control-label">First name:</label>
+                        <label for="first_name" class="col-md-4 control-label">First name:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="first name" required/>
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="first name" required/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lastname" class="col-md-4 control-label">Last Name:</label>
+                        <label for="last_name" class="col-md-4 control-label">Last Name:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="last name"/>
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last name" required/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,7 +70,7 @@ and open the template in the editor.
                     <div class="form-group">
                         <label for="phone" class="col-md-4 control-label">Phone:</label>
                         <div class="col-md-8">
-                            <input type="tel" id="phone" name="phone" placeholder="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required/>
+                            <input type="tel" id="phone" name="phone" placeholder="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                         </div>
                     </div>
                     <input type="hidden"                        

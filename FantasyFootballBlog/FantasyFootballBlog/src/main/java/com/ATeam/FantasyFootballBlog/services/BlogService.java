@@ -14,6 +14,7 @@ import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
+import com.ATeam.FantasyFootballBlog.models.registerUser;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -137,11 +138,21 @@ public class BlogService implements UserDetailsService{
         return new HashSet<>(list); 
     } 
 
-    public void createUser(User newUser) {
+    public void createUser(registerUser regUser) {
         List<Role> roles = roleRepo.findAll();
         Set<Role> setOfRoles = convertListToSet(roles);
         setOfRoles.remove(roles.get(0));
+        setOfRoles.remove(roles.get(2));
+        User newUser = new User();
+        newUser.setUsername(regUser.getUsername());
+        newUser.setFirst_name(regUser.getFirst_name());
+        newUser.setLast_name(regUser.getLast_name());
+        newUser.setPassword(regUser.getPassword());
+        newUser.setPhone(regUser.getPhone());
         newUser.setRoles(setOfRoles);
+        newUser.setEmail(regUser.getEmail());
+        newUser.setEnabled(true);
+        
         userRepo.save(newUser);
     }
 }

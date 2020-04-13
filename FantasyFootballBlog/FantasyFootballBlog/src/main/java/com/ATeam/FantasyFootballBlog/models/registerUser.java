@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class registerUser {
     
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
@@ -34,6 +34,8 @@ public class User {
     
     @Column(nullable = false)
     private String password;
+    
+    private String confirmedPassword;
     
     @Column(nullable = false)
     private boolean enabled;
@@ -78,6 +80,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmedPassword() {
+        return confirmedPassword;
+    }
+
+    public void setConfirmedPassword(String confirmedPassword) {
+        this.confirmedPassword = confirmedPassword;
     }
 
     public boolean isEnabled() {
@@ -130,16 +140,17 @@ public class User {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + this.id;
-        hash = 19 * hash + Objects.hashCode(this.username);
-        hash = 19 * hash + Objects.hashCode(this.password);
-        hash = 19 * hash + (this.enabled ? 1 : 0);
-        hash = 19 * hash + Objects.hashCode(this.first_name);
-        hash = 19 * hash + Objects.hashCode(this.last_name);
-        hash = 19 * hash + Objects.hashCode(this.email);
-        hash = 19 * hash + Objects.hashCode(this.phone);
-        hash = 19 * hash + Objects.hashCode(this.roles);
+        int hash = 3;
+        hash = 67 * hash + this.id;
+        hash = 67 * hash + Objects.hashCode(this.username);
+        hash = 67 * hash + Objects.hashCode(this.password);
+        hash = 67 * hash + Objects.hashCode(this.confirmedPassword);
+        hash = 67 * hash + (this.enabled ? 1 : 0);
+        hash = 67 * hash + Objects.hashCode(this.first_name);
+        hash = 67 * hash + Objects.hashCode(this.last_name);
+        hash = 67 * hash + Objects.hashCode(this.email);
+        hash = 67 * hash + Objects.hashCode(this.phone);
+        hash = 67 * hash + Objects.hashCode(this.roles);
         return hash;
     }
 
@@ -154,7 +165,7 @@ public class User {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final registerUser other = (registerUser) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -165,6 +176,9 @@ public class User {
             return false;
         }
         if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.confirmedPassword, other.confirmedPassword)) {
             return false;
         }
         if (!Objects.equals(this.first_name, other.first_name)) {
@@ -184,5 +198,5 @@ public class User {
         }
         return true;
     }
-
+    
 }
