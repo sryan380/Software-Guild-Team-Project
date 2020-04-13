@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/deleteArt/{id}").hasRole("ADMIN")
                 .antMatchers("/viewArt_**").permitAll()
                 .antMatchers("/Mascot.jpg").permitAll()
+                .antMatchers("/register?register_error=1").permitAll()
                 .antMatchers("/css/**", "/js/**","/fonts/**").permitAll()
                 .anyRequest().hasRole("USER")
                 

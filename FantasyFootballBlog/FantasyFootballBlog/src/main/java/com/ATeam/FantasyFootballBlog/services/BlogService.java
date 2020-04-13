@@ -14,6 +14,7 @@ import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
+import com.ATeam.FantasyFootballBlog.models.registerUser;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -78,12 +79,22 @@ public class BlogService implements UserDetailsService{
         
     }
     
-    public User getIdbyName(String name){
+    public User getIdbyName(String name) throws NullNameException {
+        
+        if( name == null ){
+            throw new NullNameException( "Null name in getIdbyName method." );
+        }
+        
         User toReturn  = userDao.getUserByUsername(name);
         return toReturn;
     }
     
-    public Article createArticle(Article newArt) {
+    public Article createArticle(Article newArt) throws NullArticleException {
+        
+        if( newArt == null ){
+            throw new NullArticleException("Null article during createArticle method.");
+        }
+        
         Article posted = artRepo.save(newArt);
         return posted;
     }
@@ -125,7 +136,7 @@ public class BlogService implements UserDetailsService{
     }
 
     public Article getArticleById(Integer id) throws NullArticleException {
-        id = 1;
+        //id = 1;
         Optional<Article> articles = artRepo.findById(id);
         
         if(articles == null){
@@ -140,11 +151,21 @@ public class BlogService implements UserDetailsService{
         return new HashSet<>(list); 
     } 
 
-    public void createUser(User newUser) {
+    public void createUser(registerUser regUser) {
         List<Role> roles = roleRepo.findAll();
         Set<Role> setOfRoles = convertListToSet(roles);
         setOfRoles.remove(roles.get(0));
+        setOfRoles.remove(roles.get(2));
+        User newUser = new User();
+        newUser.setUsername(regUser.getUsername());
+        newUser.setFirst_name(regUser.getFirst_name());
+        newUser.setLast_name(regUser.getLast_name());
+        newUser.setPassword(regUser.getPassword());
+        newUser.setPhone(regUser.getPhone());
         newUser.setRoles(setOfRoles);
+        newUser.setEmail(regUser.getEmail());
+        newUser.setEnabled(true);
+        
         userRepo.save(newUser);
     }
 }

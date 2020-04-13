@@ -11,6 +11,7 @@ import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import com.ATeam.FantasyFootballBlog.services.NullArticleException;
 import com.ATeam.FantasyFootballBlog.services.NullCommentException;
+import com.ATeam.FantasyFootballBlog.services.NullNameException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,7 +40,7 @@ public class ArticleController {
     }
 
     @PostMapping("/postArt")
-    public String createArticle(Article newArt) {
+    public String createArticle(Article newArt) throws NullArticleException, NullNameException {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
@@ -91,7 +92,7 @@ public class ArticleController {
     }
 
     @PostMapping("/comment")
-    public String userComment(Comment comment) throws NullCommentException {
+    public String userComment(Comment comment) throws NullCommentException, NullNameException {
         
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;

@@ -17,6 +17,7 @@ import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import com.ATeam.FantasyFootballBlog.services.NullArticleException;
 import com.ATeam.FantasyFootballBlog.services.NullCommentException;
+import com.ATeam.FantasyFootballBlog.services.NullNameException;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -27,19 +28,68 @@ import org.junit.jupiter.api.Test;
  * @author davidsteffes
  */
 public class ServiceTest {
-//
-//    UserDao userDaoTest = new UserInMemDao();
-//    ArticleRepository artRepoTest = new ArtRepoInMemDao();
-//    CommentRepository commentRepoTest = new CommentRepoInMemDao();
-//
-//    BlogService serviceTest = new BlogService(userDaoTest, artRepoTest, commentRepoTest);
-//
-////    public void loadUserByUsernameGoldenPath (){
-////        try{
-////           String validation;
-////           User testUser = serviceTest.loadUserByUsername(validation);
-////        }
-////    }
+
+    UserDao userDaoTest = new UserInMemDao();
+    ArticleRepository artRepoTest = new ArtRepoInMemDao();
+    CommentRepository commentRepoTest = new CommentRepoInMemDao();
+
+    BlogService serviceTest = new BlogService(userDaoTest, artRepoTest, commentRepoTest);
+
+    //public void loadUserByUsernameGoldenPath (){
+//        
+//    Smelser: You don't need to test this.
+          
+            
+    @Test
+    public void testGetIdByNameGoldenPath() {
+        try {
+            User testUser = serviceTest.getIdbyName("breadmania");
+
+            assertEquals(1234, testUser.getId());
+            assertEquals(true, testUser.isEnabled());
+            assertEquals("breadman", testUser.getPassword());
+            assertEquals("breadmania", testUser.getUsername());
+
+        } catch (NullNameException ex) {
+            fail("Got NullNameException during testGetIdbyNameGoldenPath");
+        }
+
+    }
+
+    @Test
+    public void testGetIdByNameNullName() {
+        try {
+            User testUser = serviceTest.getIdbyName(null);
+
+        } catch (NullNameException ex) {
+
+        }
+    }
+
+    @Test
+    public void testCreateArticleGoldenPath() {
+        try {
+        List<Article> listOfArticles = artRepoTest.findAll();
+        Article testArticle = listOfArticles.get(1);
+        Article validation = serviceTest.createArticle(testArticle);
+        
+        assertEquals("Editorial", validation.getTitle());
+        assertEquals("Opinion", validation.getContent());
+        
+        } catch (NullArticleException ex){
+            fail("Got NullArticleException during testCreateArticleGoldenPath.");  
+        }
+
+    }
+    
+    @Test
+    public void testCreateArticleNullArticle(){
+        try{
+            serviceTest.createArticle(null);
+        } catch (NullArticleException ex){
+        }
+    }
+    
 //    @Test
 //    public void testEditArticleGoldenPath() {
 //
@@ -49,11 +99,13 @@ public class ServiceTest {
 //            Article testArticle = testList.get(0);
 //            Article validation = serviceTest.editArticle(testArticle);
 //            User testUser = validation.getUser();
-//
-//            assertEquals(1234, validation.getArticle_id());
+
+            //not going to test validation.getArticle_id()) because
+            //our save method in ArtRepoInMemDao outputs an ID
+            //of 1 higher than the current-highest ID
 //            assertEquals("Test Name", validation.getTitle());
 //            assertEquals("Test Text", validation.getContent());
-//            assertEquals(5678, testUser.getId());
+//            //assertEquals(5678, testUser.getId());
 //            assertEquals(true, testUser.isEnabled());
 //            assertEquals("Test Name", testUser.getUsername());
 //            assertEquals("Test password", testUser.getPassword());
@@ -63,18 +115,18 @@ public class ServiceTest {
 //            fail("Got NullArticleException during testEditArticleGoldenPath");
 //        }
 //    }
-//
-//    @Test
-//    public void testEditArticleNullArticle() {
-//        try {
-//
-//            Article validation = serviceTest.editArticle(null);
-//
-//        } catch (NullArticleException ex) {
-//        }
-//
-//    }
-//
+
+    @Test
+    public void testEditArticleNullArticle() {
+        try {
+
+            Article validation = serviceTest.editArticle(null);
+
+        } catch (NullArticleException ex) {
+        }
+
+    }
+
 //    @Test
 //    public void testUserCommentGoldenPath() {
 //        try {
@@ -104,20 +156,45 @@ public class ServiceTest {
 //            fail("Hit NullCommentException during testUserCommentGoldenPath.");
 //        }
 //    }
-//
+
+    @Test
+    public void testUserCommentNullComment() {
+        try {
+            Comment validation = serviceTest.userComment(null);
+
+        } catch (NullCommentException ex) {
+        }
+    }
+
 //    @Test
-//    public void testUserCommentNullComment() {
-//        try {
-//            Comment validation = serviceTest.userComment(null);
-//
-//        } catch (NullCommentException ex) {
+//    public void testGetArticleByIdGoldenPath() {
+//        try{
+//            
+//        List<Article> articleList = artRepoTest.findAll();
+//        Article testArticle = articleList.get(0);
+//        Article validation = serviceTest.getArticleById(testArticle.getArticle_id());
+//        
+//        assertEquals(1234, validation.getArticle_id());
+//        assertEquals("Test Name", validation.getTitle());
+//        assertEquals("Test Text", validation.getContent());
+//        
+//        } catch (NullArticleException ex){
+//            fail("Got NullArticleException during testGetArticleByIdGoldenPath.");
 //        }
+//        
 //    }
-//
+    
 //    @Test
-//    public void getArticleById() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//
+//    public void testGetArticleByIdNullArticle () {
+//        try{
+//            Article validation = serviceTest.getArticleById(null);
+//        
+//        } catch (NullArticleException ex){
+//        }
+//        
 //    }
-//
+    @Test
+    public void createUser (){
+        
+    }
 }
