@@ -77,12 +77,22 @@ public class BlogService implements UserDetailsService{
         
     }
     
-    public User getIdbyName(String name){
+    public User getIdbyName(String name) throws NullNameException {
+        
+        if( name == null ){
+            throw new NullNameException( "Null name in getIdbyName method." );
+        }
+        
         User toReturn  = userDao.getUserByUsername(name);
         return toReturn;
     }
     
-    public Article createArticle(Article newArt) {
+    public Article createArticle(Article newArt) throws NullArticleException {
+        
+        if( newArt == null ){
+            throw new NullArticleException("Null article during createArticle method.");
+        }
+        
         Article posted = artRepo.save(newArt);
         return posted;
     }
@@ -122,7 +132,7 @@ public class BlogService implements UserDetailsService{
     }
 
     public Article getArticleById(Integer id) throws NullArticleException {
-        id = 1;
+        //id = 1;
         Optional<Article> articles = artRepo.findById(id);
         
         if(articles == null){
