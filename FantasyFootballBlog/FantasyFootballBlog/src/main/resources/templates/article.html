@@ -45,21 +45,16 @@ and open the template in the editor.
             <div th:text="${article.user.username}"></div>
             <div th:utext="${article.content}"></div>
            
-        <a th:href="@{'/deleteArt/' + ${article.article_id}}" class="w3-button w3-hover-teal">Delete Article</a>
+            <a th:href="@{'/deleteArt/' + ${article.article_id}}" class="w3-button w3-hover-teal">Delete Article</a>
           
             
             <h4>Comments</h4>
             <div class="col-md-8" th:each="comment : ${article.artComments}">
                 <label th:text="${comment.user_id.username}"/>
                 <p class="col-md-8" style = "border-radius: 15px; background-color: #038a75; color: white; resize:none" th:text="${comment.content}"/>
+                <img src="catWithBallOnBack.jpg" alt="something" height="100px"/>
             </div>
-
-
             
-
-
-
-
             <div id="userComment">
 
                 <h6>Leave a Comment</h6>

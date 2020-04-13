@@ -7,12 +7,16 @@ package com.ATeam.FantasyFootballBlog;
 
 import com.ATeam.FantasyFootballBlog.DAOTest.ArtRepoInMemDao;
 import com.ATeam.FantasyFootballBlog.DAOTest.CommentRepoInMemDao;
+import com.ATeam.FantasyFootballBlog.DAOTest.RoleInMemDao;
 import com.ATeam.FantasyFootballBlog.DAOTest.UserInMemDao;
+import com.ATeam.FantasyFootballBlog.Daos.RoleDao;
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
 import com.ATeam.FantasyFootballBlog.Repository.ArticleRepository;
 import com.ATeam.FantasyFootballBlog.Repository.CommentRepository;
+import com.ATeam.FantasyFootballBlog.Repository.RoleRepository;
 import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Comment;
+import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import com.ATeam.FantasyFootballBlog.services.NullArticleException;
@@ -32,6 +36,7 @@ public class ServiceTest {
     UserDao userDaoTest = new UserInMemDao();
     ArticleRepository artRepoTest = new ArtRepoInMemDao();
     CommentRepository commentRepoTest = new CommentRepoInMemDao();
+    RoleRepository roleRepoTest = new RoleInMemDao();
 
     BlogService serviceTest = new BlogService(userDaoTest, artRepoTest, commentRepoTest);
 
@@ -40,21 +45,21 @@ public class ServiceTest {
 //    Smelser: You don't need to test this.
           
             
-    @Test
-    public void testGetIdByNameGoldenPath() {
-        try {
-            User testUser = serviceTest.getIdbyName("breadmania");
-
-            assertEquals(1234, testUser.getId());
-            assertEquals(true, testUser.isEnabled());
-            assertEquals("breadman", testUser.getPassword());
-            assertEquals("breadmania", testUser.getUsername());
-
-        } catch (NullNameException ex) {
-            fail("Got NullNameException during testGetIdbyNameGoldenPath");
-        }
-
-    }
+//    @Test
+//    public void testGetIdByNameGoldenPath() {
+//        try {
+//            User testUser = serviceTest.getIdbyName("breadmania");
+//
+//            assertEquals(1234, testUser.getId());
+//            assertEquals(true, testUser.isEnabled());
+//            assertEquals("breadman", testUser.getPassword());
+//            assertEquals("breadmania", testUser.getUsername());
+//
+//        } catch (NullNameException ex) {
+//            fail("Got NullNameException during testGetIdbyNameGoldenPath");
+//        }
+//
+//    }
 
     @Test
     public void testGetIdByNameNullName() {
@@ -194,7 +199,18 @@ public class ServiceTest {
 //        
 //    }
     @Test
-    public void createUser (){
+    public void testCreateUserGoldenPath (){
+        
+//        
+//        
+//        serviceTest.createUser(regUser);
+//        
+//        assertEquals();
+//        
+//        
+        
+        
+        
         
     }
 }
