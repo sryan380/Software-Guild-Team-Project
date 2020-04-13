@@ -10,9 +10,10 @@ create table users(
 	`password` varchar(100) not null,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     phone varchar(50),
-	enabled boolean not null);
+	enabled boolean not null
+);
 
 create table roles(
 	id int primary key auto_increment,
@@ -79,23 +80,12 @@ Create table user_contributors(
 	foreign key (contributor_id) references contributors(contributor_id)
 );
 
-<<<<<<< HEAD
-insert into users(username,`password`,enabled) values
-	("sryan", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76" , 1),
-	("admin", "$2a$10$.eqOOp7lmvwb8lJ5Lbsj8.5GxYvslO3KiQZTIcu1XH3r5FOSRxieu", 1),
-    ("dave", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1),
-    ("rodney","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1),
-    ("bvance","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1),
-    ("breadman", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1);
-    
-=======
 insert into users(username,`password`,first_name, last_name, email, enabled) values
 	("sryan", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", "steve", "ryan", "sryan380@gmail.com", 1),
 	("admin", "$2a$10$.eqOOp7lmvwb8lJ5Lbsj8.5GxYvslO3KiQZTIcu1XH3r5FOSRxieu", "admin", "admin", "admin@gmail.com", 1),
     ("dave", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", "dave", "steffes", "dave@gmail.com", 1),
     ("rodney","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", "rodney", "breadman", "breadman@gmail.com", 1),
     ("bvance","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", "ben", "vance", "bvance@gmail.com", 1);
->>>>>>> 6c56cc7382808dd679529b48b8ac5b227ab387ab
 
 insert into roles(`role`) values
 	("ROLE_ADMIN"), 
@@ -112,7 +102,7 @@ insert into user_roles(user_id, role_id) values
     (4,1),
     (4,2),
     (5,1),
-    (5,2),
-    (6,2);
+    (5,2);
+    
 
  

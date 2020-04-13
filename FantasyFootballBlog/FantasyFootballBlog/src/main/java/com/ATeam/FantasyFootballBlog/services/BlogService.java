@@ -14,7 +14,7 @@ import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
-import com.ATeam.FantasyFootballBlog.models.registerUser;
+import com.ATeam.FantasyFootballBlog.models.RegisterUser;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -136,7 +136,7 @@ public class BlogService implements UserDetailsService{
     }
 
     public Article getArticleById(Integer id) throws NullArticleException {
-        //id = 1;
+        id = 1;
         Optional<Article> articles = artRepo.findById(id);
         
         if(articles == null){
@@ -151,7 +151,10 @@ public class BlogService implements UserDetailsService{
         return new HashSet<>(list); 
     } 
 
-    public void createUser(registerUser regUser) {
+    public void createUser(RegisterUser regUser) throws DuplicateEmailException{
+        if(!emailUnique(regUser.getEmail())){
+            throw new DuplicateEmailException("Email is already resgistered");
+        }
         List<Role> roles = roleRepo.findAll();
         Set<Role> setOfRoles = convertListToSet(roles);
         setOfRoles.remove(roles.get(0));
@@ -169,7 +172,17 @@ public class BlogService implements UserDetailsService{
         userRepo.save(newUser);
     }
     
-    private String emailValidate(){
-        
+    private boolean emailUnique(String email){
+        boolean isUnique = true;
+        List<User> allUsers = userRepo.findAll();
+        for (User toCheck : allUsers){
+            if (email.equals(toCheck.getEmail())){
+                isUnique = false;
+            }
+                
+        }
+        return isUnique;
     }
+
+   
 }
