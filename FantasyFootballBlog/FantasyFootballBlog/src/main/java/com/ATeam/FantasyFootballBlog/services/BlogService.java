@@ -144,4 +144,8 @@ public class BlogService implements UserDetailsService{
         newUser.setRoles(setOfRoles);
         userRepo.save(newUser);
     }
+    
+    private String emailValidate(){
+        
+    }
 }
