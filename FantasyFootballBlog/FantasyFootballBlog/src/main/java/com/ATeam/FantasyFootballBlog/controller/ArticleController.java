@@ -11,6 +11,7 @@ import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import com.ATeam.FantasyFootballBlog.services.NullArticleException;
 import com.ATeam.FantasyFootballBlog.services.NullCommentException;
+import com.ATeam.FantasyFootballBlog.services.NullNameException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -38,7 +40,7 @@ public class ArticleController {
     }
 
     @PostMapping("/postArt")
-    public String createArticle(Article newArt) {
+    public String createArticle(Article newArt) throws NullArticleException, NullNameException {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
@@ -65,10 +67,23 @@ public class ArticleController {
     public void editArticle(Article editArt) throws NullArticleException {
         service.editArticle(editArt);
     }
-
-    @PostMapping("/deleteArt")
-    public void deleteArticle(Article deleteArt) {
-        service.deleteArticle(deleteArt);
+    
+//    @PostMapping("/deleteArt_{id}")
+//    public String deleteArticle(@PathVariable Article id) {
+//        service.deleteArticle(id);
+//        return "/article";
+//    }
+    
+//    @RequestMapping(value = "/deleteArt_/{article.article_id}", method = RequestMethod.GET)
+//    public String deleteArticle(@PathVariable Article id) {
+//        service.deleteArticle(id);
+//    return "redirect:/article";
+//}
+    @RequestMapping("/deleteArt/{id}")
+    public String deleteAticle(@PathVariable(name = "id") int id) {
+        
+        service.deleteArticle(id);
+        return "redirect:/";
     }
 
     @PostMapping("/contComment")
@@ -77,7 +92,7 @@ public class ArticleController {
     }
 
     @PostMapping("/comment")
-    public String userComment(Comment comment) throws NullCommentException {
+    public String userComment(Comment comment) throws NullCommentException, NullNameException {
         
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;

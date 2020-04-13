@@ -22,18 +22,17 @@ public class UserInMemDao implements UserDao {
 
     @Override
     public User getUserByUsername(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
-//        User testUser = new User();
-//        testUser.setId(1234);
-//        testUser.setEnabled(true);
-//        testUser.setPassword("breadman");
-////        testUser.setRoles("Role_User");
-//        testUser.setId(5678);
-//        testUser.setUsername("breadmania");
-//        
-//        return testUser;
-//        
+        User testUser = new User();
+        testUser.setId(1234);
+        testUser.setEnabled(true);
+        testUser.setPassword("breadman");
+//        testUser.setRoles("Role_User");
+//        need to figure out how to set the user-role here- it's not a string
+        testUser.setUsername("breadmania");
+        
+        return testUser;
+        
     }
 
     @Override
