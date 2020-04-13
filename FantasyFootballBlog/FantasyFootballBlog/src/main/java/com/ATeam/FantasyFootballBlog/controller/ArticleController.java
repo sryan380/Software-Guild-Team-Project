@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -65,10 +66,23 @@ public class ArticleController {
     public void editArticle(Article editArt) throws NullArticleException {
         service.editArticle(editArt);
     }
-
-    @PostMapping("/deleteArt")
-    public void deleteArticle(Article deleteArt) {
-        service.deleteArticle(deleteArt);
+    
+//    @PostMapping("/deleteArt_{id}")
+//    public String deleteArticle(@PathVariable Article id) {
+//        service.deleteArticle(id);
+//        return "/article";
+//    }
+    
+//    @RequestMapping(value = "/deleteArt_/{article.article_id}", method = RequestMethod.GET)
+//    public String deleteArticle(@PathVariable Article id) {
+//        service.deleteArticle(id);
+//    return "redirect:/article";
+//}
+    @RequestMapping("/deleteArt/{id}")
+    public String deleteAticle(@PathVariable(name = "id") int id) {
+        
+        service.deleteArticle(id);
+        return "redirect:/";
     }
 
     @PostMapping("/contComment")

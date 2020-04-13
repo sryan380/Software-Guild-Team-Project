@@ -84,7 +84,9 @@ insert into users(username,`password`,enabled) values
 	("admin", "$2a$10$.eqOOp7lmvwb8lJ5Lbsj8.5GxYvslO3KiQZTIcu1XH3r5FOSRxieu", 1),
     ("dave", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1),
     ("rodney","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1),
-    ("bvance","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1);
+    ("bvance","$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", 1),
+    ("breadman", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76",1);
+    
 
 insert into roles(`role`) values
 	("ROLE_ADMIN"), 
@@ -101,6 +103,7 @@ insert into user_roles(user_id, role_id) values
     (4,1),
     (4,2),
     (5,1),
-    (5,2);
+    (5,2),
+    (6,2);
 
  

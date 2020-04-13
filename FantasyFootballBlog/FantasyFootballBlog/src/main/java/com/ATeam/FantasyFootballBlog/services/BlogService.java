@@ -25,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -97,8 +98,10 @@ public class BlogService implements UserDetailsService{
         return edited;
     }
 
-    public void deleteArticle(Article deleteArt) {
-     //artRepo.delete(deleteArt.getArticle_id();
+    public void deleteArticle(int id) {
+        
+        artRepo.deleteById(id);
+         
     }
 
     public void contComment(int id) {
