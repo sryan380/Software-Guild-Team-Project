@@ -5,7 +5,7 @@
  */
 package com.ATeam.FantasyFootballBlog.controller;
 
-import com.ATeam.FantasyFootballBlog.models.User;
+import com.ATeam.FantasyFootballBlog.models.registerUser;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +29,10 @@ public class LoginController {
     }
     
     @PostMapping("/register")
-    public String registerUser(User newUser){
+    public String registerUser(registerUser newUser){
+        if (!newUser.getPassword().equals(newUser.getConfirmedPassword())){
+            return "redirect:/register?register_error=1";
+        }
         String hasedPass = passwordHash(newUser.getPassword());
         newUser.setPassword(hasedPass);
         service.createUser(newUser);
