@@ -136,7 +136,7 @@ public class BlogService implements UserDetailsService{
     }
 
     public Article getArticleById(Integer id) throws NullArticleException {
-        //id = 1;
+        id = 1;
         Optional<Article> articles = artRepo.findById(id);
         
         if(articles == null){
