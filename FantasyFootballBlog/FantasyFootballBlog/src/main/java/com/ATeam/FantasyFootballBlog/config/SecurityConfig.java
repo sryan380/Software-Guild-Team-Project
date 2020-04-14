@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/midYawn.jpg").permitAll()
                 .antMatchers("/register?register_error=1").permitAll()
                 .antMatchers("/css/**", "/js/**","/fonts/**").permitAll()
+                .antMatchers("/StyleSheet.css").permitAll()
                 .anyRequest().hasRole("USER")
                 
                 .and()
