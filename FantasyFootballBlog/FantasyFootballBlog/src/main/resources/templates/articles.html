@@ -40,22 +40,25 @@ and open the template in the editor.
                             <a class="nav-link" href="createArt" style = "color: #038a75">Create new Article</a>
                         </li>
 
-                    </ul> 
-                    <form id="search-form_3">
-                        <input type="text" class="search_3"/>
-                        <input type="submit" class="submit_3" value="Search" />
-                    </form>
-
-                    </ul>
-                    <div class="search-box">
-                        <form class="search-box"
-                              method="POST"
-                              action="/search_${tag}">
-                            <input type="search" value="tag"/>
-                            <input type="submit"
-                        </form>
-                    </div>
-             </div>
+                        <div class="container">
+                            <input type="text" placeholder="Search...">
+                                <div class="search"></div>
+                        </div>
+                        <!--                    <form id="search-form_3">
+                                                <input type="text" class="search_3"/>
+                                                <input type="submit" class="submit_3" value="Search" />
+                                            </form>
+                        
+                                            </ul>
+                                            <div class="search-box">
+                                                <form class="search-box"
+                                                      method="POST"
+                                                      action="/search_${tag}">
+                                                    <input type="search" value="tag"/>
+                                                    <input type="submit"
+                                                </form>
+                                            </div>-->
+                </div>
                 <h2>Articles Page</h2>
                 <div sec:authorize="isAuthenticated()">
                     <form class="form-inline" 
