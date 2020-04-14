@@ -5,8 +5,9 @@
  */
 package com.ATeam.FantasyFootballBlog.controller;
 
-import com.ATeam.FantasyFootballBlog.models.registerUser;
+import com.ATeam.FantasyFootballBlog.models.RegisterUser;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
+import com.ATeam.FantasyFootballBlog.services.DuplicateEmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,8 @@ public class LoginController {
     }
     
     @PostMapping("/register")
-    public String registerUser(registerUser newUser){
+    public String registerUser(RegisterUser newUser) throws DuplicateEmailException{
+        
         if (!newUser.getPassword().equals(newUser.getConfirmedPassword())){
             return "redirect:/register?register_error=1";
         }

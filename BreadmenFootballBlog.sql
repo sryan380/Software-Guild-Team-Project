@@ -10,9 +10,10 @@ create table users(
 	`password` varchar(100) not null,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     phone varchar(50),
-	enabled boolean not null);
+	enabled boolean not null
+);
 
 create table roles(
 	id int primary key auto_increment,
@@ -102,5 +103,6 @@ insert into user_roles(user_id, role_id) values
     (4,2),
     (5,1),
     (5,2);
+
 
  

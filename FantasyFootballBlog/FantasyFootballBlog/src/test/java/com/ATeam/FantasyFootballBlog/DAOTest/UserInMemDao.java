@@ -8,7 +8,6 @@ package com.ATeam.FantasyFootballBlog.DAOTest;
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
-import com.ATeam.FantasyFootballBlog.models.registerUser;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +18,8 @@ import java.util.List;
 public class UserInMemDao implements UserDao {
 
     List<User> userList = new ArrayList<>();
-        
-    public UserInMemDao(){
+
+    public UserInMemDao() {
         User testUser1 = new User();
         testUser1.setId(1234);
         testUser1.setUsername("breadmania");
@@ -30,7 +29,7 @@ public class UserInMemDao implements UserDao {
         testUser1.setLast_name("Smith");
         testUser1.setEmail("bobsemail");
         userList.add(testUser1);
-        
+
         User testUser2 = new User();
         testUser2.setId(5678);
         testUser2.setUsername("firefly");
@@ -40,7 +39,7 @@ public class UserInMemDao implements UserDao {
         testUser2.setLast_name("Doe");
         testUser2.setEmail("janesemail");
         userList.add(testUser2);
-        
+
     }
 
     @Override
@@ -50,13 +49,22 @@ public class UserInMemDao implements UserDao {
 
     @Override
     public User getUserByUsername(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        User toReturn = new User();
+
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getUsername() == username) {
+                toReturn = userList.get(i);
+            }
+            
+        }
+        return toReturn;
     }
 
     @Override
     public List<User> getAllUsers() {
         return userList;
-        }
+    }
 
     @Override
     public void updateUser(User user) {
@@ -72,5 +80,5 @@ public class UserInMemDao implements UserDao {
     public User createUser(User user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
