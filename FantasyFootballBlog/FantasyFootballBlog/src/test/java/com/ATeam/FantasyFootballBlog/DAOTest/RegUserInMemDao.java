@@ -6,7 +6,7 @@
 package com.ATeam.FantasyFootballBlog.DAOTest;
 
 import com.ATeam.FantasyFootballBlog.Daos.RegisterUserDao;
-import com.ATeam.FantasyFootballBlog.models.registerUser;
+import com.ATeam.FantasyFootballBlog.models.RegisterUser;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class RegUserInMemDao implements RegisterUserDao {
 
-    List<registerUser> listOfRegisteredUsers = new ArrayList<>();
+    List<RegisterUser> listOfRegisteredUsers = new ArrayList<>();
 
     public RegUserInMemDao() {
 
-        registerUser testRegUser1 = new registerUser();
+        RegisterUser testRegUser1 = new RegisterUser();
         testRegUser1.setId(34);
         testRegUser1.setUsername("Tim");
         testRegUser1.setPassword("kenobi");
@@ -31,7 +31,7 @@ public class RegUserInMemDao implements RegisterUserDao {
         testRegUser1.setEmail("jediemail");
         listOfRegisteredUsers.add(testRegUser1);
 
-        registerUser testRegUser2 = new registerUser();
+        RegisterUser testRegUser2 = new RegisterUser();
         testRegUser2.setId(55);
         testRegUser2.setUsername("Karen");
         testRegUser2.setPassword("vader");
