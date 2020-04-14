@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/catClawingAtDoorBack.jpg").permitAll()
                 .antMatchers("/catWithBallOnBack.jpg").permitAll()
                 .antMatchers("/midYawn.jpg").permitAll()
+//                .antMatchers("Images/**").permitAll()
                 .antMatchers("/register?register_error=1").permitAll()
                 .antMatchers("/css/**", "/js/**","/fonts/**").permitAll()
                 .antMatchers("/StyleSheet.css").permitAll()
