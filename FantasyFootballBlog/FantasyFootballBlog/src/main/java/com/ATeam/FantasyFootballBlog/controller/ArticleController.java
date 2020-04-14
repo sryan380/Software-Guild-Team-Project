@@ -12,6 +12,7 @@ import com.ATeam.FantasyFootballBlog.services.BlogService;
 import com.ATeam.FantasyFootballBlog.services.NullArticleException;
 import com.ATeam.FantasyFootballBlog.services.NullCommentException;
 import com.ATeam.FantasyFootballBlog.services.NullNameException;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,7 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class ArticleController {
-    
+
     @Autowired
     BlogService service;
 
@@ -49,10 +50,19 @@ public class ArticleController {
         } else {
             username = principal.toString();
         }
-
+        
+        ArrayList<String> tags = new ArrayList<String>();
+        String[] words = newArt.getContent().split(",| |&|;|\\.|\\?|!|:|/");
+        for (String word : words) {
+            if (word.startsWith("#")) {
+                tags.add(word);
+            }
+        }
+        
         User author = service.getIdbyName(username);
         newArt.setUser(author);
         service.createArticle(newArt);
+        service.addTags(tags, newArt.getArticle_id());
         return "redirect:/";
     }
 
@@ -62,18 +72,17 @@ public class ArticleController {
         model.addAttribute("article", toView);
         return "article";
     }
-    
+
     @PostMapping("/editArt")
     public void editArticle(Article editArt) throws NullArticleException {
         service.editArticle(editArt);
     }
-    
+
 //    @PostMapping("/deleteArt_{id}")
 //    public String deleteArticle(@PathVariable Article id) {
 //        service.deleteArticle(id);
 //        return "/article";
 //    }
-    
 //    @RequestMapping(value = "/deleteArt_/{article.article_id}", method = RequestMethod.GET)
 //    public String deleteArticle(@PathVariable Article id) {
 //        service.deleteArticle(id);
@@ -81,7 +90,7 @@ public class ArticleController {
 //}
     @RequestMapping("/deleteArt/{id}")
     public String deleteAticle(@PathVariable(name = "id") int id) {
-        
+
         service.deleteArticle(id);
         return "redirect:/";
     }
@@ -93,7 +102,7 @@ public class ArticleController {
 
     @PostMapping("/comment")
     public String userComment(Comment comment) throws NullCommentException, NullNameException {
-        
+
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof UserDetails) {
@@ -101,14 +110,12 @@ public class ArticleController {
         } else {
             username = principal.toString();
         }
-        
+
         User author = service.getIdbyName(username);
         comment.setUser(author);
         service.userComment(comment);
-        
+
         return "redirect:/viewArt_" + comment.getArticle_id().getArticle_id();
     }
-
-    
 
 }

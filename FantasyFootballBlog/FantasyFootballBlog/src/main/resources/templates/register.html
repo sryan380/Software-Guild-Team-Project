@@ -25,6 +25,9 @@ and open the template in the editor.
 
                 <h3 th:if="${#request.getParameter('register_error') == '1'}">
                     Passwords must match</h3>
+                <h3 th:if="${#request.getParameter('register_error') == '2'}">
+                    Email is already registered</h3>
+                
 
                 <form onsubmit="checkForm(this);"
                       class="form-horizontal" 

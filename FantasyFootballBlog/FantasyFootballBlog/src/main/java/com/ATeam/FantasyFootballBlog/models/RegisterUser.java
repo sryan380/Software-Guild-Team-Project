@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users")
-public class registerUser {
+public class RegisterUser {
     
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
@@ -165,7 +165,7 @@ public class registerUser {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final registerUser other = (registerUser) obj;
+        final RegisterUser other = (RegisterUser) obj;
         if (this.id != other.id) {
             return false;
         }
