@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class HomeController {
     
-    @GetMapping({"/", "/home"})
+    @GetMapping({"/", "/articles"})
     public String displayHomePage() {
         
-        return "home";
+        return "articles";
     }
     
     @GetMapping("/createArt")

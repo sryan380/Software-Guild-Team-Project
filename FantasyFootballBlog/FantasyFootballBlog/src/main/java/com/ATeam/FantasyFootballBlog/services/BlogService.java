@@ -134,10 +134,6 @@ public class BlogService implements UserDetailsService{
         return posted;
     }
 
-    public void createTag() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void createReport() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -204,5 +200,19 @@ public class BlogService implements UserDetailsService{
                 
         }
         return isUnique;
+    }
+
+    public List<Integer> searchTag(String tag) {
+        List<Tag> allTags = tagRepo.findAll();
+        List<Integer> articleIds = new ArrayList();
+        for(Tag aTag: allTags){
+            if(aTag.getName() == tag){
+                Set<Article> theArticle = aTag.getArticles();
+                for(Article aArt: theArticle){
+                    articleIds.add(aArt.getArticle_id());
+                }
+            }
+        }
+        return articleIds;
     }
 }

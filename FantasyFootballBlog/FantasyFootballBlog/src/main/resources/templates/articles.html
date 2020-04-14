@@ -14,8 +14,8 @@ and open the template in the editor.
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
             <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
 
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
 
     </head>
     <body style = "background-color: #093685; color: white">
@@ -23,24 +23,28 @@ and open the template in the editor.
             <div class="container">
                 <h1 style="text-align: center; color: #64065f; font-size: 6em"><font font face="Impact">Fantasy Football Blog</font></h1>
                 <hr/>
-                <div class="navbar">
+                <div class="topnav">
                     <ul class="nav nav-tabs">
-                        <li role="presentation" class="nav-item">
-                            <a class="nav-link active" href="home" style = "color: #038a75">Home</a>
-                        </li>
                         <li role="presentation" class="nav-item">
                             <a class="nav-link" href="articles" style = "color: #038a75">Articles</a>
                         </li>
-                        <li role="presentation" class="nav-item">
+                        <li sec:authorize="!isAuthenticated()" role="presentation" class="nav-item">
                             <a class="nav-link" href="login" style = "color: #038a75">Login</a>
                         </li>
-                        <li role="presentation" class="nav-item">
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" role="presentation" class="nav-item">
                             <a class="nav-link" href="admin" style = "color: #038a75">Admin</a>
                         </li>
-                        <li role="presentation" class="nav-item">
+                        <li sec:authorize="hasRole('ROLE_ADMIN, ROLE_CONTRIBUTOR')" role="presentation" class="nav-item">
                             <a class="nav-link" href="createArt" style = "color: #038a75">Create new Article</a>
                         </li>
-                    </ul>    
+                    </ul>
+                    <div class="search-box">
+                        <form class="search-box"
+                              method="POST"
+                              action="/search_${tag}">
+                            <input type="search" value="tag"/>
+                        </form>
+                    </div>
                 </div>
                 <h2>Articles Page</h2>
                 <div sec:authorize="isAuthenticated()">
@@ -60,6 +64,12 @@ and open the template in the editor.
                 </p>
                 <div class="row">
                     <a href="viewArt_1"><img src="badCatWithBallOnBelly.jpg" alt="something" height="150px"/>view article</a>
+                </div>
+                <div class="row">
+                    <img src="Mascot.jpg" alt="something" height="200px"/>
+                    <img src="catClawingAtDoorBack.jpg" alt="something" height="200px"/>
+                    <img src="midYawn.jpg" alt="something" height="200px"/>
+                    <img src="BothCats.jpg" alt="something" height="200px"/>
                 </div>
             </div>
         </div>
