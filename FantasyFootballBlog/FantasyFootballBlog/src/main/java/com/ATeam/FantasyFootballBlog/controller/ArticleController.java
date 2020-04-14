@@ -35,11 +35,6 @@ public class ArticleController {
     @Autowired
     BlogService service;
 
-    @GetMapping("/articles")
-    public String displayContentPage() {
-        return "articles";
-    }
-
     @PostMapping("/postArt")
     public String createArticle(Article newArt) throws NullArticleException, NullNameException {
 
@@ -77,17 +72,7 @@ public class ArticleController {
     public void editArticle(Article editArt) throws NullArticleException {
         service.editArticle(editArt);
     }
-
-//    @PostMapping("/deleteArt_{id}")
-//    public String deleteArticle(@PathVariable Article id) {
-//        service.deleteArticle(id);
-//        return "/article";
-//    }
-//    @RequestMapping(value = "/deleteArt_/{article.article_id}", method = RequestMethod.GET)
-//    public String deleteArticle(@PathVariable Article id) {
-//        service.deleteArticle(id);
-//    return "redirect:/article";
-//}
+    
     @RequestMapping("/deleteArt/{id}")
     public String deleteAticle(@PathVariable(name = "id") int id) {
 

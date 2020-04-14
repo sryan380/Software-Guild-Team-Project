@@ -101,7 +101,6 @@ insert into user_roles(user_id, role_id) values
     (3,2),
     (4,1),
     (4,2),
-    (5,1),
     (5,2);
 
 
