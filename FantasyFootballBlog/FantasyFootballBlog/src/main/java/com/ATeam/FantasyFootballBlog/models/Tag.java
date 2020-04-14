@@ -15,12 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Steve
  */
 @Entity
+@Table(name ="tags")
 public class Tag {
     
     @GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -42,7 +42,7 @@ Create table articles(
 
 create table tags(
 	tag_id int primary key auto_increment,
-    `name` varchar(30) not null
+    `name` varchar(30) not null unique
 );
 
 create table article_tags(

@@ -9,16 +9,21 @@ import com.ATeam.FantasyFootballBlog.Daos.UserDao;
 import com.ATeam.FantasyFootballBlog.Repository.ArticleRepository;
 import com.ATeam.FantasyFootballBlog.Repository.CommentRepository;
 import com.ATeam.FantasyFootballBlog.Repository.RoleRepository;
+import com.ATeam.FantasyFootballBlog.Repository.TagRepository;
 import com.ATeam.FantasyFootballBlog.Repository.UserRepository;
 import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Comment;
 import com.ATeam.FantasyFootballBlog.models.Role;
+import com.ATeam.FantasyFootballBlog.models.Tag;
 import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.models.registerUser;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.lang.Integer;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -49,6 +54,9 @@ public class BlogService implements UserDetailsService{
     
     @Autowired
     CommentRepository commentRepo;
+    
+    @Autowired
+    TagRepository tagRepo;
     
     @Autowired
         public BlogService (UserDao userDao, ArticleRepository artRepo, CommentRepository commentRepo){
@@ -167,5 +175,20 @@ public class BlogService implements UserDetailsService{
         newUser.setEnabled(true);
         
         userRepo.save(newUser);
+    }
+
+    public void addTags(ArrayList<String> tags, Integer id) {
+        Optional<Article> optArticles = artRepo.findById(id);
+        Set<Article> articles = optArticles.map(Collections::singleton).orElse(Collections.emptySet());
+        tags.removeIf(t -> 
+            t.equals("#333333")||t.equals("#ffffff")||t.equals("#"));
+        for(String tag: tags){
+            
+            Tag allTags = new Tag();
+            allTags.setArticles(articles);
+            allTags.setName(tag);
+            tagRepo.save(allTags);
+        }
+        
     }
 }
