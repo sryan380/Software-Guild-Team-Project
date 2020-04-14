@@ -25,19 +25,19 @@ and open the template in the editor.
             <div class="container">
                 <h1 style="text-align: center; color: #038a75">Fantasy Football Blog</h1>
                 <hr/>
-                <div class="navbar">
+                 <div class="navbar">
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="nav-item">
-                            <a class="nav-link active" href="home">Home</a>
+                            <a class="nav-link" href="articles" style = "color: #038a75">Articles</a>
                         </li>
-                        <li role="presentation" class="nav-item">
-                            <a class="nav-link" href="articles">Articles</a>
+                        <li sec:authorize="!isAuthenticated()" role="presentation" class="nav-item">
+                            <a class="nav-link" href="login" style = "color: #038a75">Login</a>
                         </li>
-                        <li role="presentation" class="nav-item">
-                            <a class="nav-link" href="login">Login</a>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" role="presentation" class="nav-item">
+                            <a class="nav-link" href="admin" style = "color: #038a75">Admin</a>
                         </li>
-                        <li role="presentation" class="nav-item">
-                            <a class="nav-link" href="admin">Admin</a>
+                        <li sec:authorize="hasRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')" role="presentation" class="nav-item">
+                            <a class="nav-link" href="createArt" style = "color: #038a75">Create new Article</a>
                         </li>
                     </ul>    
                 </div>
