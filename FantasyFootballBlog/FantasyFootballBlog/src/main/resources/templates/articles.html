@@ -44,9 +44,12 @@ and open the template in the editor.
                 <object width="400" height="400" align="right">
                     <form  id="content"
                            class="search-box"
-                           method="GET"
+                           method="Post"
                            action="/search">
-                        <input type="text" name="input" class="input" id="search-input">
+                        <input type="hidden" 
+                               th:name="${_csrf.parameterName}" 
+                               th:value="${_csrf.token}"/>
+                        <input type="text" name="tag" class="input" id="search-input">
                             <button type="reset" class="search" id="search-btn"></button>
                     </form>       
                 </object>
@@ -67,19 +70,18 @@ and open the template in the editor.
                 <p>
                     Only users with the USER role can see this page.
                 </p>
-                <div>
-                    <a href="viewArt_1">view article</a>
-
+                <div th:each="article: ${allArticles}">
                     <div class="row">
-                        <a href="viewArt_1"><img src="Images/badCatWithBallOnBelly.jpg" alt="something" height="150px"/>view article</a>
-                    </div>
-                    <div class="row">
-                        <img src="Images/Mascot.jpg" alt="something" height="200px"/>
-                        <img src="Images/catClawingAtDoorBack.jpg" alt="something" height="200px"/>
-                        <img src="Images/midYawn.jpg" alt="something" height="200px"/>
-                        <img src="Images/BothCats.jpg" alt="something" height="200px"/>
+                        <a th:href="${'viewArt_'+ article.article_id}"><img src="Images/badCatWithBallOnBelly.jpg" th:text="${article.title}" alt="something" height="150px"/></a>
                     </div>
                 </div>
+                <div class="row">
+                    <img src="Images/Mascot.jpg" alt="something" height="200px"/>
+                    <img src="Images/catClawingAtDoorBack.jpg" alt="something" height="200px"/>
+                    <img src="Images/midYawn.jpg" alt="something" height="200px"/>
+                    <img src="Images/BothCats.jpg" alt="something" height="200px"/>
+                </div>
+
             </div>
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
