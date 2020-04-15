@@ -107,15 +107,14 @@ public class BlogService implements UserDetailsService {
         return posted;
     }
 
-    public Article editArticle(Article editArt) throws NullArticleException {
-
-        if (editArt == null) {
-            throw new NullArticleException("Null article in editArticle method.");
-        }
-
-        Article edited = artRepo.save(editArt);
-        return edited;
-    }
+//    public void editArticle(int id) throws NullArticleException {
+//        Optional<Article> editArt = artRepo.findById(id);
+//        if (editArt == null) {
+//            throw new NullArticleException("Null article in editArticle method.");
+//        }
+//        return "/editArt"
+////        deleteArticle(id);
+//    }
 
     public void deleteArticle(int id) {
 

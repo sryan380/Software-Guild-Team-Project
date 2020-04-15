@@ -66,13 +66,16 @@ public class ArticleController {
         return "article";
     }
 
-    @PostMapping("/editArt/{id}")
-    public void editArticle(Article editArt) throws NullArticleException {
-        service.editArticle(editArt);
+    @RequestMapping("/editArt/{id}")
+    public String editArticle(@PathVariable(name = "id") Integer id, Model model) throws NullArticleException {
+        Article toView = service.getArticleById(id);
+        model.addAttribute("toEdit", toView);
+        return "editArticle";
+//        service.editArticle(id);
     }
     
     @RequestMapping("/deleteArt/{id}")
-    public String deleteAticle(@PathVariable(name = "id") int id) {
+    public String deleteAticle(@PathVariable(name = "id") Integer id) {
 
         service.deleteArticle(id);
         return "redirect:/";
