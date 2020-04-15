@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package com.ATeam.FantasyFootballBlog.DAOTest;
-
-import com.ATeam.FantasyFootballBlog.Daos.RegisterUserDao;
 import com.ATeam.FantasyFootballBlog.models.RegisterUser;
+import com.ATeam.FantasyFootballBlog.Daos.RegisterUserDao;
 import java.util.ArrayList;
 import java.util.List;
 
