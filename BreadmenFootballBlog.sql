@@ -1,4 +1,3 @@
-SELECT * FROM BreadmenFootballBlog.articles;
 drop database if exists BreadmenFootballBlog;
 
 create database BreadmenFootballBlog;
