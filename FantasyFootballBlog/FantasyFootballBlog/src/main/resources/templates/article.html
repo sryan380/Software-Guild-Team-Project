@@ -20,7 +20,7 @@ and open the template in the editor.
             <div class="container">
                 <h1 style="text-align: center; color: #64065f; font-size: 6em"><font font face="Impact">Fantasy Football Blog</font></h1>
                 <hr/>
-                 <div class="navbar">
+                <div class="navbar">
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="nav-item">
                             <a class="nav-link" href="articles" style = "color: #038a75">Articles</a>
@@ -48,17 +48,22 @@ and open the template in the editor.
             </div>
             
             <div class='delete'>
-              <ul sec:authorize="hasRole('ROLE_ADMIN')" role="presentation" class="delete-item"/>
-            <a th:href="@{'/deleteArt/' + ${article.article_id}}" class="w3-button w3-hover-teal">Delete Article</a>
-           </div>
-            
+                <ul sec:authorize="hasRole('ROLE_ADMIN')" role="presentation" class="delete-item"/>
+                           <a th:href="@{'/deleteArt/' + ${article.article_id}}">
+                    <button class="button button-blue button-bordered">
+                        <span class="button--inner">Delete Article</span>
+                    </button>
+
+                </a>
+            </div>
+
             <h4>Comments</h4>
             <div class="col-md-8" th:each="comment : ${article.artComments}">
                 <label th:text="${comment.user_id.username}"/>
                 <p class="col-md-8" style = "border-radius: 15px; background-color: #038a75; color: white; resize:none" th:text="${comment.content}"/>
                 <img src="Images/catWithBallOnBack.jpg" alt="something" height="100px"/>
             </div>
-            
+
             <div id="userComment">
 
                 <h6>Leave a Comment</h6>
