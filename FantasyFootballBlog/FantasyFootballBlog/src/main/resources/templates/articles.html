@@ -16,9 +16,11 @@ and open the template in the editor.
             <!-- Bootstrap CSS -->
 
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="StyleSheet.css"/>
 
     </head>
     <body style = "background-color: #093685; color: white">
+
         <div class="container" style = "background-color: black">
             <div class="container">
                 <h1 style="text-align: center; color: #64065f; font-size: 6em"><font font face="Impact">Fantasy Football Blog</font></h1>
@@ -37,14 +39,25 @@ and open the template in the editor.
                         <li sec:authorize="hasRole('ROLE_ADMIN, ROLE_CONTRIBUTOR')" role="presentation" class="nav-item">
                             <a class="nav-link" href="createArt" style = "color: #038a75">Create new Article</a>
                         </li>
-                    </ul>
-                    <div class="search-box">
-                        <form class="search-box"
-                              method="POST"
-                              action="/search_${tag}">
-                            <input type="search" value="tag"/>
-                        </form>
-                    </div>
+
+                        <div class="container">
+                            <input type="text" placeholder="Search...">
+                                <div class="search"></div>
+                        </div>
+                        <!--                    <form id="search-form_3">
+                                                <input type="text" class="search_3"/>
+                                                <input type="submit" class="submit_3" value="Search" />
+                                            </form>
+                        
+                                            </ul>
+                                            <div class="search-box">
+                                                <form class="search-box"
+                                                      method="POST"
+                                                      action="/search_${tag}">
+                                                    <input type="search" value="tag"/>
+                                                    <input type="submit"
+                                                </form>
+                                            </div>-->
                 </div>
                 <h2>Articles Page</h2>
                 <div sec:authorize="isAuthenticated()">
