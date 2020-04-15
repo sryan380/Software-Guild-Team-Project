@@ -31,7 +31,7 @@ and open the template in the editor.
                         <li sec:authorize="hasRole('ROLE_ADMIN')" role="presentation" class="nav-item">
                             <a class="nav-link" href="admin" style = "color: #038a75">Admin</a>
                         </li>
-                        <li sec:authorize="hasRole('ROLE_ADMIN'; 'ROLE_CONTRIBUTOR')" role="presentation" class="nav-item">
+                        <li sec:authorize="hasRole('ROLE_ADMIN, ROLE_CONTRIBUTOR')" role="presentation" class="nav-item">
                             <a class="nav-link" href="createArt" style = "color: #038a75">Create new Article</a>
                         </li>
                     </ul>    
