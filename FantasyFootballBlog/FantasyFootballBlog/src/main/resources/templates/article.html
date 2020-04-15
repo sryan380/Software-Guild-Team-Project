@@ -41,9 +41,11 @@ and open the template in the editor.
             <div th:text="${article.title}"></div>
             <div th:text="${article.user.username}"></div>
             <div th:utext="${article.content}"></div>
-           
-            <a th:href="@{'/deleteArt/' + ${article.article_id}}" class="w3-button w3-hover-teal">Delete Article</a>
           
+            <div class='delete'>
+              <li sec:authorize="hasRole('ROLE_ADMIN')" role="presentation" class="delete-item">
+            <a th:href="@{'/deleteArt/' + ${article.article_id}}" class="w3-button w3-hover-teal">Delete Article</a>
+           </div>
             
             <h4>Comments</h4>
             <div class="col-md-8" th:each="comment : ${article.artComments}">
