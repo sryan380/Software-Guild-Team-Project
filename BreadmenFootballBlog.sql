@@ -80,6 +80,10 @@ Create table user_contributors(
 	foreign key (contributor_id) references contributors(contributor_id)
 );
 
+<<<<<<< HEAD
+    
+=======
+>>>>>>> cf720a8b9e5297366edcc9021d530a68d6111eb4
 insert into users(username,`password`,first_name, last_name, email, enabled) values
 	("sryan", "$2a$10$2moI2Qphuq5fVuXi7lim5u7lWP1GV40hCd6zTJIRGdz2TAyKJ0/76", "steve", "ryan", "sryan380@gmail.com", 1),
 	("admin", "$2a$10$.eqOOp7lmvwb8lJ5Lbsj8.5GxYvslO3KiQZTIcu1XH3r5FOSRxieu", "admin", "admin", "admin@gmail.com", 1),

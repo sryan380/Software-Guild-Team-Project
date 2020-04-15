@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <!-- Required meta tags -->
+        <title>FantasyFB: Home</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+
+
+    </head>
+    <body style = "background-color: #093685; color: white">
+        <div class="container" style = "background-color: black">
+            <div class="container">
+                <h1 style="text-align: center; color: #64065f; font-size: 6em"><font font face="Impact">Fantasy Football Blog</font></h1>
+                <hr/>
+                <div class="navbar">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link active" href="home" style = "color: #038a75">Home</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link" href="articles" style = "color: #038a75">Articles</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link" href="login" style = "color: #038a75">Login</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link" href="admin" style = "color: #038a75">Admin</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a class="nav-link" href="createArt" style = "color: #038a75">Create new Article</a>
+                        </li>
+                    </ul>    
+                </div>
+                <h2>Home Page</h2>
+
+                <div class="row" sec:authorize="isAuthenticated()">
+                    <div class="col-md-8">
+                        <form class="form-inline" 
+                              method="POST" 
+                              action="/logout">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <label for="submit">
+                                Hello &nbsp; <span th:text="${#authentication.name}">
+                                </span>&nbsp;&nbsp;&nbsp;|
+                            </label>
+                            <button class="btn btn-link" id="submit" type="submit">Logout</button>
+                        </form>
+
+                    </div>
+                    <div class="col-md-4" id="article_1">
+                        <!--                    Hello Breadman Make this hyperLink to article, calling article controller, 
+                                            which calls service layer, which calls dao method to populate our static html-->
+                    </div>
+
+                </div>
+
+                <p>
+                    The landing page of our application - anyone can get here, including anonymous users.
+                </p>
+                <div sec:authorize="isAuthenticated()">
+                    <p>
+                        This is only visible to the cool people who have logged in.
+                    </p>
+
+                </div>
+            </div>
+            <div class="row">
+                <img src="Mascot.jpg" alt="something" height="200px"/>
+                <img src="catClawingAtDoorBack.jpg" alt="something" height="200px"/>
+                <img src="midYawn.jpg" alt="something" height="200px"/>
+                <img src="BothCats.jpg" alt="something" height="200px"/>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>
