@@ -41,4 +41,8 @@ public class RegUserInMemDao implements RegisterUserDao {
         testRegUser2.setEmail("neverendingemail");
         listOfRegisteredUsers.add(testRegUser2);
     }
+    
+    public List<RegisterUser> getRegUserList(){
+        return listOfRegisteredUsers;
+    }
 }
