@@ -15,6 +15,9 @@ and open the template in the editor.
               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
 
     </head>
+    <iframe id="thVid" width="0" height="0" src="https://www.youtube.com/embed/HGEDCjLtD60?start=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+    </iframe>
     <body style = "background-color: #093685; color: white">
         <div class="container" style = "background-color: black">
             <div class="container">
@@ -62,6 +65,7 @@ and open the template in the editor.
 
             <h4>Comments</h4>
             <div class="col-md-8" th:each="comment : ${article.artComments}">
+                <button style="background-color: black; border: none" onclick="playVid()"></button>
                 <label th:text="${comment.user_id.username}"/>
                 <p class="col-md-8" style = "border-radius: 15px; background-color: #038a75; color: white; resize:none" th:text="${comment.content}"/>
                 <img src="Images/catWithBallOnBack.jpg" alt="something" height="100px"/>

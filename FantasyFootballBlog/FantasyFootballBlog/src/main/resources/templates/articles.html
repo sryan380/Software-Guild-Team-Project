@@ -19,10 +19,11 @@ and open the template in the editor.
             <link rel="stylesheet" href="StyleSheet.css"/>
 
     </head>
-    
+
     <iframe id="thVid" width="0" height="0" src="https://www.youtube.com/embed/HGEDCjLtD60?start=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 
     </iframe>
+
     <body style = "background-color: #093685; color: white">
 
         <div class="container" style = "background-color: black">
@@ -68,17 +69,15 @@ and open the template in the editor.
                             Hello &nbsp; <span th:text="${#authentication.name}">
                             </span>&nbsp;&nbsp;&nbsp;|
                         </label>
-                        <button class="btn btn-link" id="submit" type="submit">Logout</button>
+
+                        <button onclick="playVid2()" class="btn btn-link" id="submit" type="submit">Logout</button>
                     </form>
                 </div>
-                <p>
-                    Only users with the USER role can see this page.
-                </p>
-                
+
                 <div th:each="article: ${allArticles}">
                     <div class="row" style="margin-left: 0">
                         <button style="background-color: black; border: none" onclick="playVid()">
-                        <a th:href="${'viewArt_'+ article.article_id}"><img src="Images/badCatWithBallOnBelly.jpg" th:text="${article.title}" alt="something" height="150px"/></a>
+                            <a th:href="${'viewArt_'+ article.article_id}"><img src="Images/badCatWithBallOnBelly.jpg" th:text="${article.title}" alt="something" height="150px"/></a>
                         </button>
                     </div>
                 </div>

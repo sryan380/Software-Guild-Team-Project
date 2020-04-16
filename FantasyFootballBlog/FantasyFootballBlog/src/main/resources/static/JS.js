@@ -14,7 +14,12 @@ const expand = () => {
 searchBtn.addEventListener("click", expand);
 
 var vid = document.getElementById("theVid");
+var vid2 = document.getElementById("theVid2");
 
 function playVid() {
     vid.play();
+}
+
+function playVid2() {
+    vid2.play();
 }
