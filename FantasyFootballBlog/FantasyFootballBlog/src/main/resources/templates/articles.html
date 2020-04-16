@@ -71,7 +71,7 @@ and open the template in the editor.
                     Only users with the USER role can see this page.
                 </p>
                 <div th:each="article: ${allArticles}">
-                    <div class="row">
+                    <div class="row" style="margin-left: 0">
                         <a th:href="${'viewArt_'+ article.article_id}"><img src="Images/badCatWithBallOnBelly.jpg" th:text="${article.title}" alt="something" height="150px"/></a>
                     </div>
                 </div>

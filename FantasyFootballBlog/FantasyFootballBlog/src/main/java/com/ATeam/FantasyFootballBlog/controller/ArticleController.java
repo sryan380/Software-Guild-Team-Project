@@ -13,6 +13,7 @@ import com.ATeam.FantasyFootballBlog.services.NullArticleException;
 import com.ATeam.FantasyFootballBlog.services.NullCommentException;
 import com.ATeam.FantasyFootballBlog.services.NullNameException;
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,14 +36,8 @@ public class ArticleController {
 
     @PostMapping("/postArt")
     public String createArticle(Article newArt) throws NullArticleException, NullNameException {
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username;
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails) principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
+        
+        Article oldArt = service.getArticleById(newArt.getArticle_id());
         
         ArrayList<String> tags = new ArrayList<String>();
         String[] words = newArt.getContent().split(",| |&|;|\\.|\\?|!|:|/");
@@ -50,6 +45,20 @@ public class ArticleController {
             if (word.startsWith("#")) {
                 tags.add(word);
             }
+        }
+        
+        if(oldArt != null){
+            service.updateArt(newArt);
+            service.addTags(tags, newArt.getArticle_id());
+            return "redirect:/";
+        }
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
         }
         
         User author = service.getIdbyName(username);
@@ -65,7 +74,14 @@ public class ArticleController {
         model.addAttribute("article", toView);
         return "article";
     }
-
+    
+//    @GetMapping("articles")
+//    public String displayArts(Model model){
+//        List<Article> articles = service.getAllArticles();
+//        model.addAttribute("allArticles", articles);
+//        return "articles";
+//    }
+    
     @RequestMapping("/editArt/{id}")
     public String editArticle(@PathVariable(name = "id") Integer id, Model model) throws NullArticleException {
         Article toView = service.getArticleById(id);
