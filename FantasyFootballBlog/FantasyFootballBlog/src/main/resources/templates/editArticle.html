@@ -8,7 +8,7 @@ and open the template in the editor.
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
-        <title>FantasyFB: CreateArt</title>
+        <title>FantasyFB: Edit Art</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="https://cdn.tiny.cloud/1/7jsmm0v5x69ab6u222jlakxkx05t43g9rv5gfr933wyd7s7c/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -32,16 +32,14 @@ and open the template in the editor.
                         <li sec:authorize="hasRole('ROLE_ADMIN')" role="presentation" class="nav-item">
                             <a class="nav-link" href="admin" style = "color: #038a75">Admin</a>
                         </li>
-                        <li sec:authorize="hasRole('ROLE_ADMIN,ROLE_CONTRIBUTOR')" role="presentation" class="nav-item">
-                            <a class="nav-link" href="createArt" style = "color: #038a75">Create new Article</a>
-                        </li>
                     </ul>    
                 </div>
             </div>
 
             <form method="post" action="/postArt">
-                <input type="text" name="title" placeholder="Type title here"/>
-                <textarea id="here" name="content" >
+                <input type="hidden" name="article_id" th:value="${toEdit.article_id}"/>
+                <textarea name="title" th:text="${toEdit.title}"></textarea>
+                <textarea id="here" name="content" th:text="${toEdit.content}">
                 </textarea>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <input type="submit" value="Submit Article" />

@@ -120,17 +120,17 @@ public class ServiceTest {
 //            fail("Got NullArticleException during testEditArticleGoldenPath");
 //        }
 //    }
-
-    @Test
-    public void testEditArticleNullArticle() {
-        try {
-
-            Article validation = serviceTest.editArticle(null);
-
-        } catch (NullArticleException ex) {
-        }
-
-    }
+//
+//    @Test
+//    public void testEditArticleNullArticle() {
+//        try {
+//
+//            Article validation = serviceTest.editArticle(null);
+//
+//        } catch (NullArticleException ex) {
+//        }
+//
+//    }
 
 //    @Test
 //    public void testUserCommentGoldenPath() {
