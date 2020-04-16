@@ -5,10 +5,13 @@
  */
 package com.ATeam.FantasyFootballBlog.controller;
 
+import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
+import com.ATeam.FantasyFootballBlog.services.NullArticleException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -22,8 +25,15 @@ public class TagController {
     @Autowired
     BlogService service;
     
-    @PostMapping("/search{tag}")
-    public void searchTag(@PathVariable("tag") String tag){
-        List<Integer> articlesIds = service.searchTag(tag);
+    @PostMapping("/search")
+    public String searchTag(String tag, Model model) throws NullArticleException{
+        tag = "#" + tag;
+//        List<Integer> articlesIds = service.searchTag(tag);
+        List<Article> allArticles = service.getAllArticles(tag);
+        model.addAttribute("allArticles", allArticles);
+//        int id = articlesIds.get(0);
+//        Article toView = service.getArticleById(id);
+//        model.addAttribute("article", toView);
+        return "articles";
     }
 }

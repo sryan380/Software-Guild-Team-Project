@@ -17,5 +17,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Integer>{
-    List findByArticles(Article article);
+    List<Tag> findByArticles(Article article);
+    List<Tag> findByName(String name);
 }
