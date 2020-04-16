@@ -23,7 +23,7 @@ body {
   margin-bottom: 100px;
 /*  top: 50%;
   left: 50%;*/
-  transform: translate(-50%, -50%);
+  transform: translate(-40%, -70%);
 }
 
 #content.on {
@@ -41,7 +41,7 @@ input {
   box-sizing: border-box;
   width: 25px;
   height: 25px;
-  border: 4px solid #ffffff;
+  border: 2px solid #038a75;
   border-radius: 50%;
   background: none;
   color: #fff;
@@ -83,14 +83,14 @@ input {
 .search:before {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 4px;
-  background-color: #fff;
+  width: 17px;
+  height: 2px;
+  background-color: #038a75;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   margin-top: 20px;
-  margin-left: 7px;
+  margin-left: 9px;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }
@@ -105,11 +105,11 @@ input {
 .close:before {
   content: "";
   position: absolute;
-  /*width: 20px;*/
-  height: 4px;
+  width: 20px;
+  height: 2px;
   margin-top: -1px;
   margin-left: -12px;
-  background-color: #fff;
+  background-color: #97118f;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -121,8 +121,8 @@ input {
   content: "";
   position: absolute;
   width: 20px;
-  height: 4px;
-  background-color: #fff;
+  height: 2px;
+  background-color: #97118f;
   margin-top: -1px;
   margin-left: -12px;
   cursor: pointer;
@@ -136,9 +136,9 @@ input {
   padding: 0 40px 0 10px;
   width: 250px;
   height: 35px;
-  border: 4px solid #ffffff;
+  border: 2px solid #038a75;
   border-radius: 0;
-  background: none;
+  background: black;
   color: #fff;
   font-family: Roboto;
   font-size: 16px;
@@ -150,11 +150,15 @@ input {
     padding 0.2s;
   -webkit-transition-delay: 0.4s, 0s, 0.4s;
   transition-delay: 0.4s, 0s, 0.4s;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-110%, -50%);
+  -ms-transform: translate(-110%, -50%);
+  transform: translate(-110%, -50%);
 }
 
 button:focus{
     outline: none;
+}
+
+input{
+    background-color: black;
 }

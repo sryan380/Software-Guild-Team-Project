@@ -12,3 +12,9 @@ const expand = () => {
 };
 
 searchBtn.addEventListener("click", expand);
+
+var vid = document.getElementById("theVid");
+
+function playVid() {
+    vid.play();
+}
