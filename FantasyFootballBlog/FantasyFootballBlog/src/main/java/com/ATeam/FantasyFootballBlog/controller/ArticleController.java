@@ -37,21 +37,21 @@ public class ArticleController {
     @PostMapping("/postArt")
     public String createArticle(Article newArt) throws NullArticleException, NullNameException {
         
-        Article oldArt = service.getArticleById(newArt.getArticle_id());
+       // Article oldArt = service.getArticleById(newArt.getArticle_id());
         
         ArrayList<String> tags = new ArrayList<String>();
-        String[] words = newArt.getContent().split(",| |&|;|\\.|\\?|!|:|/");
+        String[] words = newArt.getContent().toLowerCase().split(",| |&|;|\\.|\\?|!|:|/|>|<");
         for (String word : words) {
             if (word.startsWith("#")) {
                 tags.add(word);
             }
         }
         
-        if(oldArt != null){
-            service.updateArt(newArt);
-            service.addTags(tags, newArt.getArticle_id());
-            return "redirect:/";
-        }
+//        if(oldArt != null){
+//            service.updateArt(newArt);
+//            service.addTags(tags, newArt.getArticle_id());
+//            return "redirect:/";
+//        }
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
