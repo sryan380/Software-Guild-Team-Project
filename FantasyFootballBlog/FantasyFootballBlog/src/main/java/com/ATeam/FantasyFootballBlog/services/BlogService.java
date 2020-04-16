@@ -6,6 +6,7 @@
 package com.ATeam.FantasyFootballBlog.services;
 
 import com.ATeam.FantasyFootballBlog.Daos.MainDao;
+import com.ATeam.FantasyFootballBlog.Daos.RegisterUserDao;
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
 import com.ATeam.FantasyFootballBlog.Repository.ArticleRepository;
 import com.ATeam.FantasyFootballBlog.Repository.CommentRepository;
@@ -63,12 +64,16 @@ public class BlogService implements UserDetailsService {
 
     @Autowired
     TagRepository tagRepo;
+    
+//    @Autowired
+//    RegisterUserDao regUserDao;
 
     @Autowired
     public BlogService(UserDao userDao, ArticleRepository artRepo, CommentRepository commentRepo) {
         this.userDao = userDao;
         this.artRepo = artRepo;
         this.commentRepo = commentRepo;
+        //this.regUserDao = regUserDao;
     }
 
     @Override
@@ -98,6 +103,11 @@ public class BlogService implements UserDetailsService {
         }
 
         User toReturn = userDao.getUserByUsername(name);
+        
+        if ( toReturn == null ){
+            throw new NullNameException ( "No active user with name provided." );
+        }
+        
         return toReturn;
     }
 

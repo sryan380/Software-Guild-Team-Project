@@ -27,7 +27,7 @@ public class TagController {
     
     @PostMapping("/search")
     public String searchTag(String tag, Model model) throws NullArticleException{
-        tag = "#" + tag;
+        tag = "#" + tag.toLowerCase();
         List<Article> allArticles = service.getAllArticles(tag);
         model.addAttribute("allArticles", allArticles);
         return "articles";

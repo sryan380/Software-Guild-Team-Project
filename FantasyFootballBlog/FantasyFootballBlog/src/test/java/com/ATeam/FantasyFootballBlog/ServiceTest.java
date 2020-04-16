@@ -7,8 +7,10 @@ package com.ATeam.FantasyFootballBlog;
 
 import com.ATeam.FantasyFootballBlog.DAOTest.ArtRepoInMemDao;
 import com.ATeam.FantasyFootballBlog.DAOTest.CommentRepoInMemDao;
+import com.ATeam.FantasyFootballBlog.DAOTest.RegUserInMemDao;
 import com.ATeam.FantasyFootballBlog.DAOTest.RoleInMemDao;
 import com.ATeam.FantasyFootballBlog.DAOTest.UserInMemDao;
+import com.ATeam.FantasyFootballBlog.Daos.RegisterUserDao;
 import com.ATeam.FantasyFootballBlog.Daos.RoleDao;
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
 import com.ATeam.FantasyFootballBlog.Repository.ArticleRepository;
@@ -16,6 +18,7 @@ import com.ATeam.FantasyFootballBlog.Repository.CommentRepository;
 import com.ATeam.FantasyFootballBlog.Repository.RoleRepository;
 import com.ATeam.FantasyFootballBlog.models.Article;
 import com.ATeam.FantasyFootballBlog.models.Comment;
+import com.ATeam.FantasyFootballBlog.models.RegisterUser;
 import com.ATeam.FantasyFootballBlog.models.Role;
 import com.ATeam.FantasyFootballBlog.models.User;
 import com.ATeam.FantasyFootballBlog.services.BlogService;
@@ -37,6 +40,7 @@ public class ServiceTest {
     ArticleRepository artRepoTest = new ArtRepoInMemDao();
     CommentRepository commentRepoTest = new CommentRepoInMemDao();
     RoleRepository roleRepoTest = new RoleInMemDao();
+    //RegisterUserDao  regUserDaoTest = new RegUserInMemDao();
 
     BlogService serviceTest = new BlogService(userDaoTest, artRepoTest, commentRepoTest);
 
@@ -45,24 +49,34 @@ public class ServiceTest {
 //    Smelser: You don't need to test this.
           
             
-//    @Test
-//    public void testGetIdByNameGoldenPath() {
-//        try {
-//            User testUser = serviceTest.getIdbyName("breadmania");
-//
-//            assertEquals(1234, testUser.getId());
-//            assertEquals(true, testUser.isEnabled());
-//            assertEquals("breadman", testUser.getPassword());
-//            assertEquals("breadmania", testUser.getUsername());
-//
-//        } catch (NullNameException ex) {
-//            fail("Got NullNameException during testGetIdbyNameGoldenPath");
-//        }
-//
-//    }
+    @Test
+    public void testGetIdByNameGoldenPath() {
+        try {
+            User testUser = serviceTest.getIdbyName("breadmania");
+
+            assertEquals(1234, testUser.getId());
+            assertEquals(true, testUser.isEnabled());
+            assertEquals("breadman", testUser.getPassword());
+            assertEquals("breadmania", testUser.getUsername());
+
+        } catch (NullNameException ex) {
+            fail("Got NullNameException during testGetIdbyNameGoldenPath");
+        }
+
+    }
 
     @Test
     public void testGetIdByNameNullName() {
+        try {
+            User testUser = serviceTest.getIdbyName(null);
+
+        } catch (NullNameException ex) {
+
+        }
+    }
+    
+    @Test
+    public void testGetIdByNameNotActiveUser(){
         try {
             User testUser = serviceTest.getIdbyName(null);
 
@@ -102,25 +116,18 @@ public class ServiceTest {
 //
 //            List<Article> testList = artRepoTest.findAll();
 //            Article testArticle = testList.get(0);
-//            Article validation = serviceTest.editArticle(testArticle);
-//            User testUser = validation.getUser();
-
-            //not going to test validation.getArticle_id()) because
-            //our save method in ArtRepoInMemDao outputs an ID
-            //of 1 higher than the current-highest ID
+//            serviceTest.editArticle(testArticle.getArticle_id());
+//            Article validation = serviceTest.getArticleById(testArticle.getArticle_id());
+//
 //            assertEquals("Test Name", validation.getTitle());
 //            assertEquals("Test Text", validation.getContent());
-//            //assertEquals(5678, testUser.getId());
-//            assertEquals(true, testUser.isEnabled());
-//            assertEquals("Test Name", testUser.getUsername());
-//            assertEquals("Test password", testUser.getPassword());
-//            //assertEquals - need to use for testUser.setRoles("test role");
+//            assertEquals(1234, validation.getArticle_id());
 //
 //        } catch (NullArticleException ex) {
 //            fail("Got NullArticleException during testEditArticleGoldenPath");
 //        }
 //    }
-//
+
 //    @Test
 //    public void testEditArticleNullArticle() {
 //        try {
@@ -162,14 +169,14 @@ public class ServiceTest {
 //        }
 //    }
 
-    @Test
-    public void testUserCommentNullComment() {
-        try {
-            Comment validation = serviceTest.userComment(null);
-
-        } catch (NullCommentException ex) {
-        }
-    }
+//    @Test
+//    public void testUserCommentNullComment() {
+//        try {
+//            Comment validation = serviceTest.userComment(null);
+//
+//        } catch (NullCommentException ex) {
+//        }
+//    }
 
 //    @Test
 //    public void testGetArticleByIdGoldenPath() {
@@ -188,7 +195,7 @@ public class ServiceTest {
 //        }
 //        
 //    }
-    
+//    
 //    @Test
 //    public void testGetArticleByIdNullArticle () {
 //        try{
@@ -200,6 +207,11 @@ public class ServiceTest {
 //    }
     @Test
     public void testCreateUserGoldenPath (){
+        
+        
+        
+        
+        
         
 //        
 //        

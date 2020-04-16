@@ -58,12 +58,20 @@ public class ArtRepoInMemDao implements ArticleRepository {
 
     @Override
     public Optional<Article> findById(Integer id) {
-        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
-//        Article testArticle = allArticles.get(0);
-//         return Optional    
-        
+//        Article toReturn = new Article();
+//        
+//        for(int i = 0; i < allArticles.size(); i++){
+//            
+//            if (allArticles.get(i).getArticle_id() == id){
+//                toReturn = allArticles.get(i);
+//            }
+//
+//        }       
+//     
+//             return toReturn;
+
     }
 
     @Override
