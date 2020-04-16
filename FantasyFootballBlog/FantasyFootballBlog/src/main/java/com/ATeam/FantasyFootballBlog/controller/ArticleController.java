@@ -40,7 +40,7 @@ public class ArticleController {
        // Article oldArt = service.getArticleById(newArt.getArticle_id());
         
         ArrayList<String> tags = new ArrayList<String>();
-        String[] words = newArt.getContent().split(",| |&|;|\\.|\\?|!|:|/");
+        String[] words = newArt.getContent().toLowerCase().split(",| |&|;|\\.|\\?|!|:|/|>|<");
         for (String word : words) {
             if (word.startsWith("#")) {
                 tags.add(word);

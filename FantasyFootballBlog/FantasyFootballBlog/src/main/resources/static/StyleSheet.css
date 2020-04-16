@@ -7,107 +7,6 @@ and open the template in the editor.
     Created on : Apr 14, 2020, 3:27:10 PM
     Author     : Buddy
 */
-/* search box*/
-/*
-#search-form_3 {
-background: #e1e1e1;  Fallback color for non-css3 browsers 
-width: 365px;
-margin: 100px auto;
-
- Gradients 
-background: -webkit-gradient( linear,left top, left bottom, color-stop(0, rgb(243,243,243)), color-stop(1, rgb(225,225,225)));
-background: -moz-linear-gradient( center top, rgb(243,243,243) 0%, rgb(225,225,225) 100%);
-
- Rounded Corners 
-border-radius: 17px;
--webkit-border-radius: 17px;
--moz-border-radius: 17px;
-
- Shadows 
-box-shadow: 1px 1px 2px rgba(0,0,0,.3), 0 0 2px rgba(0,0,0,.3);
--webkit-box-shadow: 1px 1px 2px rgba(0,0,0,.3), 0 0 2px rgba(0,0,0,.3);
--moz-box-shadow: 1px 1px 2px rgba(0,0,0,.3), 0 0 2px rgba(0,0,0,.3);
-}
-
-** TEXT BOX **
-.search_3{
-background: #fafafa;  Fallback color for non-css3 browsers 
-
- Gradients 
-background: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(250,250,250)), color-stop(1, rgb(230,230,230)));
-background: -moz-linear-gradient( center top, rgb(250,250,250) 0%, rgb(230,230,230) 100%);
-border: 0;
-border-bottom: 1px solid #fff;
-border-right: 1px solid rgba(255,255,255,.8);
-font-size: 16px;
-margin: 4px;
-padding: 5px;
-width: 250px;
-
- Rounded Corners 
-border-radius: 17px;
--webkit-border-radius: 17px;
--moz-border-radius: 17px;
-
- Shadows 
-box-shadow: -1px -1px 2px rgba(0,0,0,.3), 0 0 1px rgba(0,0,0,.2);
--webkit-box-shadow: -1px -1px 2px rgba(0,0,0,.3), 0 0 1px rgba(0,0,0,.2);
--moz-box-shadow: -1px -1px 2px rgba(0,0,0,.3), 0 0 1px rgba(0,0,0,.2);
-}
-
-** USER IS FOCUSED ON TEXT BOX **
-.search_3:focus{
-outline: none;
-background: #fff;  Fallback color for non-css3 browsers 
-
- Gradients 
-background: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(255,255,255)), color-stop(1, rgb(235,235,235)));
-background: -moz-linear-gradient( center top, rgb(255,255,255) 0%, rgb(235,235,235) 100%);
-}
-
-** SEARCH BUTTON **
-.submit_3{
-background: #44921f; Fallback color for non-css3 browsers 
- Gradients 
-background: -webkit-gradient( linear, left top, left bottom, color-stop(0, rgb(79,188,32)), color-stop(0.15, rgb(73,157,34)), color-stop(0.88, rgb(62,135,28)), color-stop(1, rgb(49,114,21)));
-background: -moz-linear-gradient( center top, rgb(79,188,32) 0%, rgb(73,157,34) 15%, rgb(62,135,28) 88%, rgb(49,114,21) 100%);
-border: 0;
-color: #eee;
-cursor: pointer;
-float: right;
-font: 16px 'Raleway', sans-serif;
-font-weight: bold;
-height: 30px;
-margin: 4px 4px 0;
-text-shadow: 0 -1px 0 rgba(0,0,0,.3);
-width: 84px;
-outline: none;
-
- Rounded Corners 
-border-radius: 30px;
--webkit-border-radius: 30px;
--moz-border-radius: 30px;
-
- Shadows 
-box-shadow: -1px -1px 1px rgba(255,255,255,.5), 1px 1px 0 rgba(0,0,0,.4);
--moz-box-shadow: -1px -1px 1px rgba(255,255,255,.5), 1px 1px 0 rgba(0,0,0,.2);
--webkit-box-shadow: -1px -1px 1px rgba(255,255,255,.5), 1px 1px 0 rgba(0,0,0,.4);
-}
-** SEARCH BUTTON HOVER **
-.submit_3:hover {
-background: #4ea923;  Fallback color for non-css3 browsers 
-
- Gradients 
-background: -webkit-gradient( linear, left top, left bottom, color-stop(0, rgb(89,222,27)), color-stop(0.15, rgb(83,179,38)), color-stop(0.8, rgb(66,143,27)), color-stop(1, rgb(54,120,22)));
-background: -moz-linear-gradient( center top, rgb(89,222,27) 0%, rgb(83,179,38) 15%, rgb(66,143,27) 80%, rgb(54,120,22) 100%);
-}
-.submit_3:active {
-background: #4ea923;  Fallback color for non-css3 browsers 
-
- Gradients 
-background: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(89,222,27)), color-stop(0.15, rgb(83,179,38)), color-stop(0.8, rgb(66,143,27)), color-stop(1, rgb(54,120,22)));
-background: -moz-linear-gradient( center bottom, rgb(89,222,27) 0%, rgb(83,179,38) 15%, rgb(66,143,27) 80%, rgb(54,120,22) 100%);
-}*/
 
 
 body {
@@ -140,8 +39,8 @@ body {
 
 input {
   box-sizing: border-box;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   border: 4px solid #ffffff;
   border-radius: 50%;
   background: none;
@@ -166,8 +65,8 @@ input {
   position: absolute;
   top: 0px;
   left: 0;
-  height: 50px;
-  width: 50px;
+  height: 25px;
+  width: 25px;
   padding: 0;
   border-radius: 100%;
   outline: 0;
@@ -190,26 +89,26 @@ input {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-  margin-top: 26px;
-  margin-left: 17px;
+  margin-top: 20px;
+  margin-left: 7px;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }
 
 .close {
-  -webkit-transition: 0.4s ease-in-out;
-  transition: 0.4s ease-in-out;
-  -webkit-transition-delay: 0.4s;
-  transition-delay: 0.4s;
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
 }
 
 .close:before {
   content: "";
   position: absolute;
-  width: 27px;
+  /*width: 20px;*/
   height: 4px;
   margin-top: -1px;
-  margin-left: -13px;
+  margin-left: -12px;
   background-color: #fff;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -221,11 +120,11 @@ input {
 .close:after {
   content: "";
   position: absolute;
-  width: 27px;
+  width: 20px;
   height: 4px;
   background-color: #fff;
   margin-top: -1px;
-  margin-left: -13px;
+  margin-left: -12px;
   cursor: pointer;
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -235,8 +134,8 @@ input {
 .square {
   box-sizing: border-box;
   padding: 0 40px 0 10px;
-  width: 300px;
-  height: 50px;
+  width: 250px;
+  height: 35px;
   border: 4px solid #ffffff;
   border-radius: 0;
   background: none;
@@ -251,7 +150,11 @@ input {
     padding 0.2s;
   -webkit-transition-delay: 0.4s, 0s, 0.4s;
   transition-delay: 0.4s, 0s, 0.4s;
-  -webkit-transform: translate(-100%, -50%);
-  -ms-transform: translate(-100%, -50%);
-  transform: translate(-100%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+button:focus{
+    outline: none;
 }
