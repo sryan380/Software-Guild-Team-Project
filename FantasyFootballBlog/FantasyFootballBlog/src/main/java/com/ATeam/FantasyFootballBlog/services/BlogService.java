@@ -5,6 +5,7 @@
  */
 package com.ATeam.FantasyFootballBlog.services;
 
+import com.ATeam.FantasyFootballBlog.Daos.MainDao;
 import com.ATeam.FantasyFootballBlog.Daos.UserDao;
 import com.ATeam.FantasyFootballBlog.Repository.ArticleRepository;
 import com.ATeam.FantasyFootballBlog.Repository.CommentRepository;
@@ -44,6 +45,9 @@ public class BlogService implements UserDetailsService {
 
     @Autowired
     UserDao userDao;
+    
+    @Autowired
+    MainDao mainDao;
 
     @Autowired
     ArticleRepository artRepo;
@@ -107,15 +111,14 @@ public class BlogService implements UserDetailsService {
         return posted;
     }
 
-//    public void editArticle(int id) throws NullArticleException {
-//        Optional<Article> editArt = artRepo.findById(id);
-//        if (editArt == null) {
-//            throw new NullArticleException("Null article in editArticle method.");
-//        }
-//        return "/editArt"
-////        deleteArticle(id);
-//    }
-
+    public void editArticle(int id) throws NullArticleException {
+        Optional<Article> editArt = artRepo.findById(id);
+        if (editArt == null) {
+            throw new NullArticleException("Null article in editArticle method.");
+        }
+//        return "/editArt";
+//        deleteArticle(id);
+    }
     public void deleteArticle(int id) {
 
         artRepo.deleteById(id);
@@ -140,12 +143,13 @@ public class BlogService implements UserDetailsService {
 
     public Article getArticleById(Integer id) throws NullArticleException {
         Optional<Article> articles = artRepo.findById(id);
-
-        if (articles == null) {
-            throw new NullArticleException("Got null article in getArticleById.");
+        Article toReturn = null;
+        
+        if (articles.isEmpty()) {
+            return toReturn;
         }
 
-        Article toReturn = articles.get();
+        toReturn = articles.get();
         return toReturn;
     }
 
@@ -189,11 +193,10 @@ public class BlogService implements UserDetailsService {
                 tagRepo.save(currentTag);
             } else {
                 currentTag = matchingTags.get(0);
+                currentTag.getArticles().add(optArticles.get());
+                tagRepo.save(currentTag);
             }
-            currentTag.getArticles().add(optArticles.get());
-            tagRepo.save(currentTag);
         }
-
     }
 
     private boolean emailUnique(String email) {
@@ -233,5 +236,9 @@ public class BlogService implements UserDetailsService {
         }
 
         return new ArrayList<>(aTag.getArticles());
+    }
+
+    public void updateArt(Article newArt) {
+        mainDao.updateArt(newArt);
     }
 }
