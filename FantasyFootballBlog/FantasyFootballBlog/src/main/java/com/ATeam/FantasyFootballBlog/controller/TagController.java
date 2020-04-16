@@ -28,12 +28,8 @@ public class TagController {
     @PostMapping("/search")
     public String searchTag(String tag, Model model) throws NullArticleException{
         tag = "#" + tag;
-//        List<Integer> articlesIds = service.searchTag(tag);
         List<Article> allArticles = service.getAllArticles(tag);
         model.addAttribute("allArticles", allArticles);
-//        int id = articlesIds.get(0);
-//        Article toView = service.getArticleById(id);
-//        model.addAttribute("article", toView);
         return "articles";
     }
 }
