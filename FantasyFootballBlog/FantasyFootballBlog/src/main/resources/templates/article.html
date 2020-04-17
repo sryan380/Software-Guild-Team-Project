@@ -41,8 +41,8 @@ and open the template in the editor.
                 </div>
             </div>
 
-            <div th:text="${article.title}"></div>
-            <div th:text="${article.user.username}"></div>
+            <div><h1 style="text-align: center" th:text="${article.title}"></h1></div>
+            <div><h1 style="text-align: center" th:text="${article.user.username}"></h1></div>
             <div th:utext="${article.content}"></div>
 
             <div class="edit">
@@ -56,7 +56,7 @@ and open the template in the editor.
 
             <div class='delete'>
                 <ul sec:authorize="hasRole('ROLE_ADMIN')" role="presentation" class="delete-item"></ul>
-                           <a th:href="@{'/deleteArt/' + ${article.article_id}}">
+                <a th:href="@{'/deleteArt/' + ${article.article_id}}">
                     <button class="button button-blue button-bordered">
                         <span class="button--inner">Delete Article</span>
                     </button>

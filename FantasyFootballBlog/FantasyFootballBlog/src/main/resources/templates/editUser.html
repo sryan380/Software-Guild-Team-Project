@@ -50,7 +50,7 @@ and open the template in the editor.
                                th:name="${_csrf.parameterName}" 
                                th:value="${_csrf.token}"/>
                         <label for="submit">
-                            Hello : <span th:text="${#authentication.name}">
+                            Hello &nbsp; <span th:text="${#authentication.name}">
                             </span>&nbsp;&nbsp;&nbsp;|
                         </label>
                         <button class="btn btn-link" 
@@ -58,9 +58,6 @@ and open the template in the editor.
                                 type="submit">Logout</button>
                     </form>
                 </div>
-                <p>
-                    Only users with the ADMIN role can see this page.
-                </p>
                 <div class="container">
                     <div class="row"> 
                         <h3>Update User</h3>
